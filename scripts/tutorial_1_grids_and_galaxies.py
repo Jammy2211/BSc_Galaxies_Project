@@ -24,7 +24,7 @@ These concepts will enable us to create images of galaxies and analyze how their
 Additionally, we will explore how adjusting various properties of galaxies can alter their appearance. For instance,
 we can change the size of a galaxy, rotate it, or modify its brightness.
 
-To create these images, we first need to define 2D grids of \((y, x)\) coordinates. We will shift and rotate these
+To create these images, we first need to define 2D grids of $(y, x)$ coordinates. We will shift and rotate these
 grids to manipulate the appearance of the galaxy in the generated images. The grid will serve as the input for light
 profiles, which are analytic functions that describe the distribution of a galaxy's light. By evaluating these light
 profiles on the grid, we can effectively generate images that represent the structure and characteristics of galaxies.
@@ -122,15 +122,14 @@ print(grid.slim.shape)
 For these tutorials, you don't need to fully understand why grids have both `native` and `slim` representations and
 should simply us whatever is most intuitive for the task you are performing.
 
-*Exercise*: Try creating grids with different `shape_native` and `pixel_scales` using the `ag.Grid2D.uniform()` function 
-above.  Observe how the grid coordinates change when you adjust `shape_native` and `pixel_scales`.
+*Exercise: Try creating grids with different `shape_native` and `pixel_scales` using the `ag.Grid2D.uniform()` function above.  Observe how the grid coordinates change when you adjust `shape_native` and `pixel_scales`.*
 
 __Geometry__
 
-The above grid is centered on the origin (0.0", 0.0"). Sometimes, we need to shift the grid to be centered on a 
+The above grid is centered on the origin $(0.0", 0.0")$. Sometimes, we need to shift the grid to be centered on a 
 specific point, like the center of a galaxy.
 
-We can shift the grid to a new center, (y_c, x_c), by subtracting this center from each coordinate.
+We can shift the grid to a new center, $(y_c, x_c)$, by subtracting this center from each coordinate.
 """
 centre = (0.3, 0.5)  # Shifting the grid to be centered at y=1.0", x=2.0".
 
@@ -142,10 +141,9 @@ print("(y,x) pixel 0 After Shift:")
 print(grid_shifted.native[0, 0])  # The coordinate of the first pixel after shifting.
 
 """
-The grid is now centered around (0.3", 0.5"). We can plot the shifted grid to see this change.
+The grid is now centered around $(0.3", 0.5")$. We can plot the shifted grid to see this change.
 
-*Exercise*: Try shifting the grid to a different center, for example (0.0", 0.0") or (2.0", 3.0"). Observe how the
-center of the grid changes when you adjust the `centre` variable.
+*Exercise: Try shifting the grid to a different center, for example $(0.0", 0.0")$ or $(2.0", 3.0")$. Observe how the center of the grid changes when you adjust the `centre` variable.*
 """
 grid_plotter = aplt.Grid2DPlotter(grid=grid_shifted)
 grid_plotter.set_title("Grid Centered Around (0.3, 0.5)")
@@ -158,7 +156,7 @@ To rotate the grid:
 
 1. Calculate the distance `radius` of each coordinate from the origin using $r = \sqrt{y^2 + x^2}$.
 2. Determine the angle `theta` counter clockwise from the positive x-axis using $\theta = \arctan(y / x)$.
-3. Adjust `theta` by the rotation angle and convert back to Cartesian coordinates via $y = r \sin(\theta)$ and $x = r \cos(\theta)$.
+3. Adjust `theta` by the rotation angle and convert back to Cartesian coordinates via $y_r = r \sin(\theta)$ and $x_r = r \cos(\theta)$.
 """
 angle_degrees = 60.0
 
@@ -178,8 +176,7 @@ print(grid_rotated.native[0, 0])  # The coordinate of the first pixel after rota
 """
 The grid has now been rotated 60 degrees counter-clockwise. We can plot it to see the change.
 
-*Exercise*: Try rotating the grid by a different angle, for example 30 degrees or 90 degrees. Observe how the grid
-changes when you adjust the `angle_degrees` variable.
+*Exercise: Try rotating the grid by a different angle, for example 30 degrees or 90 degrees. Observe how the grid changes when you adjust the `angle_degrees` variable.*
 """
 grid_plotter = aplt.Grid2DPlotter(grid=grid_rotated)
 grid_plotter.set_title("Grid Rotated 60 Degrees")
@@ -190,14 +187,13 @@ Next, we convert the rotated grid to elliptical coordinates using:
 
 $\eta = \sqrt{(x_r)^2 + (y_r)^2/q^2}$
 
-Where `q` is the axis-ratio of the ellipse and `(x_r, y_r)` are the rotated coordinates. 
+Where `q` is the axis-ratio of the ellipse and $(x_r, y_r)$ are the rotated coordinates. 
 
 Elliptical coordinates are a system used to describe positions in relation to an ellipse rather than a circle. They 
 are particularly useful in astronomy when dealing with objects like galaxies, which often have elliptical shapes 
 due to their inclination or intrinsic shape.
 
-*Exercise*: Try converting the grid to elliptical coordinates using a different axis-ratio, for example 0.3 or 0.8.
-What happens to the grid when you adjust the `axis_ratio` variable?
+*Exercise: Try converting the grid to elliptical coordinates using a different axis-ratio, for example 0.3 or 0.8. What happens to the grid when you adjust the `axis_ratio` variable?*
 """
 axis_ratio = 0.5
 eta = np.sqrt((grid_rotated[:, 0]) ** 2 + (grid_rotated[:, 1]) ** 2 / axis_ratio**2)
@@ -285,14 +281,13 @@ sersic_image = np.exp(-k * ((eta / effective_radius) ** (1.0 / sersic_index) - 1
 """
 When we plot the resulting image, we can see how the properties of the grid affect its appearance:
 
- - The peak intensity is at the position (0.3", 0.5"), where we shifted the grid.
+ - The peak intensity is at the position $(0.3", 0.5")$, where we shifted the grid.
  - The image is elongated along a 60° counter-clockwise angle, corresponding to the rotation of the grid.
  - The image has an elliptical shape, consistent with the axis ratio of 0.5.
 
 This demonstrates how the geometry of the grid directly influences the appearance of the light profile.
 
-*Exercise*: Try changing the values of `centre`, `ell_comps`, `effective_radius`, and `sersic_index` above. 
-Observe how these adjustments change the Sersic profile image.
+*Exercise: Try changing the values of `centre`, `ell_comps`, `effective_radius`, and `sersic_index` above. Observe how these adjustments change the Sersic profile image.*
 """
 array_plotter = aplt.Array2DPlotter(
     array=ag.Array2D(
@@ -368,8 +363,7 @@ The 1D plot below is a `semilogy` plot, meaning that the x-axis (showing the rad
 while the y-axis (showing the intensity) is log10. This is a common way to visualize light profiles, as it highlights
 the fainter outer regions of the profile. A log x-axis is also a common choice.
 
-**Exercise**: Try plotting the 1D radial profile of Sersic profiles with different effective radii and Sersic indices.
-Does the 1D representation show more clearly how the light distribution changes with these parameters?
+*Exercise: Try plotting the 1D radial profile of Sersic profiles with different effective radii and Sersic indices. Does the 1D representation show more clearly how the light distribution changes with these parameters?*
 """
 light_profile_plotter = aplt.LightProfilePlotter(
     light_profile=sersic_light_profile, grid=grid
@@ -403,7 +397,7 @@ components of a galaxy.
 
 In addition to light profiles, a `Galaxy` has a `redshift`, which indicates how far away it is from Earth. The redshift 
 is essential for performing unit conversions using cosmological calculations, such as converting arc-seconds into 
-kiloparsecs. (A kiloparsec is a distance unit in astronomy, equal to about 3.26 million light-years.)
+kiloparsecs (kpc, a kiloparsec is a distance unit in astronomy, equal to about 3.26 million light-years.)
 
 Let's start by creating a galaxy with two `Sersic` light profiles, which notationally we will consider to represent
 a bulge and disk component of the galaxy, the two most important structures seen in galaxies which drive the
@@ -584,7 +578,7 @@ Lets summarize what we've learnt:
 
 - **Grids**: WA grid is a set of 2D coordinates that represent the positions where we measure the light of a galaxy. 
 
-- ** Geometry**: How to shift, rotate, and convert grids to elliptical coordinates.
+- **Geometry**: How to shift, rotate, and convert grids to elliptical coordinates.
 
 - **Light Profiles**: Mathematical functions that describe how a galaxy's light is distributed in space. We've used 
   the `Sersic` profile to create images of galaxies.

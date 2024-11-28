@@ -5,7 +5,7 @@ This repository contains the Jupyter Notebooks and data for the BSc project on g
 
 The project can be completed at an online web server by following the link below:
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Jammy2211/autolens_workspace/release?filepath=notebooks%2Fhowtolens%2Fchapter_1_introduction%2Fchapter_1_introduction.ipynb)
+https://mybinder.org/v2/gh/Jammy2211/BSc_Galaxies_Project/HEAD
 
 Project Structure
 -----------------
@@ -28,4 +28,4 @@ The workspace includes the following additional directories:
 Workspace Version
 -----------------
 
-This version of the workspace is built and tested for using **PyAutoGalaxy v2024.9.21.2**.
+This version of the workspace is built and tested for using **PyAutoGalaxy v2024.11.6.1**.
