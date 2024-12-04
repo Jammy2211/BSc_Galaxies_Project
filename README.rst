@@ -10,7 +10,7 @@ https://mybinder.org/v2/gh/Jammy2211/BSc_Galaxies_Project/HEAD
 Project Structure
 -----------------
 
-The project consists of four Jupiter notebooks which each describe a different aspect of galaxy morphology analysis.
+The project consists of four Jupiter notebooks describing different aspects of galaxy morphology analysis.
 
 The notebooks are as follows:
 
@@ -19,11 +19,21 @@ The notebooks are as follows:
 - ``tutorial_3_fitting.ipynb``: How to fit imaging data of a galaxy and quantify whether a fit is good or bad.
 - ``tutorial_4_non_linear_searches.ipynb``: Performing model-fitting via a non-linear search to find the best-fit models describing a galaxy's morphology.
 
+You will then complete a task which uses what you learned in the tutorials to analyse James Webb Space Telescope imaging data of real galaxies.
+
+There are 6 six tasks in total, you should have been assigned one of the following:
+
+- ``task_1_morphology.ipynb``: Investigate the morphological classification of a sample of galaxies compared to where they should appear on the Hubble Tuning Fork diagram.
+- ``task_2_colours.ipynb``: Investigate how galaxies change their appearance when they are observed at different wavelengths.
+- ``task_3_mergers.ipynb``: Perform analysis of imaging data containing two merging galaxies and estimate quantities describing the properties of the merger.
+- ``task_4_sizes.ipynb``: Estimate the sizes of a sample of galaxies and consider different ways that the size of galaxies can be measured.
+- ``task_5_ellipticity.ipynb``: Quantify how elliptical galaxies appear in projection and consider how that relates to three-dimensional stellar distribution.
+- ``task_6_bars.ipynb``: Analyse a sample of galaxies which contain a morphological structure called a bar.
+
 The workspace includes the following additional directories:
 
 - ``scripts``: **PyAutoLens** examples written as Python scripts.
 - ``dataset``: Where data is stored, including example datasets distributed.
-
 
 Workspace Version
 -----------------

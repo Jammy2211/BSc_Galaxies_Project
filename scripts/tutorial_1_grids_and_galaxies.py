@@ -2,19 +2,19 @@
 BSc Galaxies Project: Introduction
 ==================================
 
-Nearly a century ago, Edwin Hubble famously classified galaxies into three distinct groups:
-ellipticals, spirals and irregulars. He produced a diagram of these galaxies, called the Hubble Tuning Fork, which
-is shown below and still discussed by astronomers in the modern day:
+Nearly a century ago, Edwin Hubble famously classified galaxies into three distinct groups: ellipticals, spirals and
+irregulars. He produced a diagram of these galaxies, called the Hubble Tuning Fork, which is shown below and still
+used by astronomers in the modern day:
 
 ![HubbleTuning](https://github.com/Jammy2211/autogalaxy_workspace/blob/main/scripts/howtogalaxy/chapter_1_introduction/HubbleTuningFork.jpg?raw=true)
 
-To make his diagram, Hubble looked at images of each galaxy in his sample, and subjectively judged by eye how
-to classify it. Today, Astronomers use computer software, statistical algorithms and image processing techniques to
+To make his diagram, Hubble looked at images of each galaxy in his sample, and subjectively judged by eye how to
+classify them. Today, Astronomers use computer software, statistical algorithms and image processing techniques to
 perform this task in a more quantifiable and objective way.
 
 These tutorials will teach you how to perform this analysis yourself, using the open-source software
-package **PyAutoGalaxy** used by professional Astronomy researchers. By the end, you'll be able to take an image of a
-galaxy and study its morphology and structure using the same techniques that professional astronomers use today.
+package **PyAutoGalaxy**. By the end, you’ll be able to take an image of a galaxy and study its morphology and
+structure using the same techniques that professional astronomers use today.
 
 Tutorial 1: Grids And Galaxies
 ==============================
