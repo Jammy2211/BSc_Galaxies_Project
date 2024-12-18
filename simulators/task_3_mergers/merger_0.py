@@ -15,15 +15,15 @@ import autogalaxy.plot as aplt
 """
 __Dataset Paths__
 """
-dataset_type = "task_1_structure"
-dataset_name = "elliptical"
+dataset_type = "task_3_mergers"
+dataset_name = "merger_0"
 dataset_path = path.join("dataset", dataset_type, dataset_name)
 
 """
 __Grid__
 """
 grid = ag.Grid2D.uniform(
-    shape_native=(100, 100),
+    shape_native=(150, 150),
     pixel_scales=0.1,
     over_sample_size=8
 )
@@ -42,18 +42,29 @@ simulator = ag.SimulatorImaging(
 """
 __Galaxies__
 """
-galaxy = ag.Galaxy(
+galaxy_0 = ag.Galaxy(
     redshift=0.5,
     bulge=ag.lp.Sersic(
-        centre=(0.0, 0.0),
-        ell_comps=ag.convert.ell_comps_from(axis_ratio=0.6, angle=70.0),
+        centre=(0.0, 2.0),
+        ell_comps=ag.convert.ell_comps_from(axis_ratio=0.8, angle=45.0),
         intensity=1.0,
-        effective_radius=3.0,
-        sersic_index=4.0,
+        effective_radius=2.0,
+        sersic_index=1.0,
     ),
 )
 
-galaxies = ag.Galaxies(galaxies=[galaxy])
+galaxy_1 = ag.Galaxy(
+    redshift=0.5,
+    bulge=ag.lp.Sersic(
+        centre=(0.0, -2.0),
+        ell_comps=ag.convert.ell_comps_from(axis_ratio=0.8, angle=45.0),
+        intensity=0.5,
+        effective_radius=2.0,
+        sersic_index=1.0,
+    ),
+)
+
+galaxies = ag.Galaxies(galaxies=[galaxy_0, galaxy_1])
 galaxies_plotter = aplt.GalaxiesPlotter(galaxies=galaxies, grid=grid)
 galaxies_plotter.figures_2d(image=True)
 
@@ -84,11 +95,6 @@ dataset_plotter = aplt.ImagingPlotter(dataset=dataset, mat_plot_2d=mat_plot)
 dataset_plotter.subplot_dataset()
 dataset_plotter.figures_2d(data=True)
 
-galaxies_plotter = aplt.GalaxiesPlotter(
-    galaxies=galaxies, grid=grid, mat_plot_2d=mat_plot
-)
-galaxies_plotter.subplot()
-
 """
-The dataset can be viewed in the folder `dataset/task_1_structure`.
+The dataset can be viewed in the folder `dataset/task_3_mergers`.
 """

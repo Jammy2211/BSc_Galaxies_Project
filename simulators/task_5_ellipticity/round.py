@@ -15,8 +15,8 @@ import autogalaxy.plot as aplt
 """
 __Dataset Paths__
 """
-dataset_type = "task_1_structure"
-dataset_name = "elliptical"
+dataset_type = "task_5_ellipticity"
+dataset_name = "round"
 dataset_path = path.join("dataset", dataset_type, dataset_name)
 
 """
@@ -46,10 +46,10 @@ galaxy = ag.Galaxy(
     redshift=0.5,
     bulge=ag.lp.Sersic(
         centre=(0.0, 0.0),
-        ell_comps=ag.convert.ell_comps_from(axis_ratio=0.6, angle=70.0),
+        ell_comps=ag.convert.ell_comps_from(axis_ratio=0.9, angle=45.0),
         intensity=1.0,
-        effective_radius=3.0,
-        sersic_index=4.0,
+        effective_radius=2.0,
+        sersic_index=1.0,
     ),
 )
 
@@ -84,11 +84,6 @@ dataset_plotter = aplt.ImagingPlotter(dataset=dataset, mat_plot_2d=mat_plot)
 dataset_plotter.subplot_dataset()
 dataset_plotter.figures_2d(data=True)
 
-galaxies_plotter = aplt.GalaxiesPlotter(
-    galaxies=galaxies, grid=grid, mat_plot_2d=mat_plot
-)
-galaxies_plotter.subplot()
-
 """
-The dataset can be viewed in the folder `dataset/task_1_structure`.
+The dataset can be viewed in the folder `dataset/task_5_ellipticity`.
 """

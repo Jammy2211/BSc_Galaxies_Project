@@ -25,9 +25,7 @@ __Grid__
 grid = ag.Grid2D.uniform(
     shape_native=(100, 100),
     pixel_scales=0.1,
-    over_sampling=ag.OverSamplingIterate(
-        fractional_accuracy=0.9999, sub_steps=[2, 4, 8, 16]
-    ),
+    over_sample_size=8
 )
 
 psf = ag.Kernel2D.from_gaussian(
@@ -86,11 +84,6 @@ dataset_plotter = aplt.ImagingPlotter(dataset=dataset, mat_plot_2d=mat_plot)
 dataset_plotter.subplot_dataset()
 dataset_plotter.figures_2d(data=True)
 
-galaxies_plotter = aplt.GalaxiesPlotter(
-    galaxies=galaxies, grid=grid, mat_plot_2d=mat_plot
-)
-galaxies_plotter.subplot()
-
 """
-The dataset can be viewed in the folder `autogalaxy_workspace/imaging/simple`.
+The dataset can be viewed in the folder `dataset/task_1_structure`.
 """
