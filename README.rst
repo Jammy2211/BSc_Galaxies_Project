@@ -23,7 +23,7 @@ You will then complete a task which uses what you learned in the tutorials to an
 
 There are 6 six tasks in total, you should have been assigned one of the following:
 
-- ``task_1_morphology.ipynb``: Investigate the morphological classification of a sample of galaxies compared to where they should appear on the Hubble Tuning Fork diagram.
+- ``task_1_structure.ipynb``: Investigate the structural classification of a sample of galaxies compared to where they should appear on the Hubble Tuning Fork diagram.
 - ``task_2_colours.ipynb``: Investigate how galaxies change their appearance when they are observed at different wavelengths.
 - ``task_3_mergers.ipynb``: Perform analysis of imaging data containing two merging galaxies and estimate quantities describing the properties of the merger.
 - ``task_4_sizes.ipynb``: Estimate the sizes of a sample of galaxies and consider different ways that the size of galaxies can be measured.

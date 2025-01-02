@@ -44,105 +44,130 @@ The code below retrieves the project files from the GitHub repository.
 !git clone https://github.com/Jammy2211/BSc_Galaxies_Project
 
 """
-Task 1: Structure
-=================
+Task: Colours
+=============
 
-Galaxy structure refers to the fundamental characteristics of galaxies, which are generally grouped into three main
-structural categories:
+Galaxies appear differently at different wavelengths, making the study of galaxy colors crucial for understanding their formation and evolution.  
 
-- **Ellipticals:** Galaxies with a smooth, featureless light profile, where stellar orbits are randomly oriented and "velocity dispersion supported."
+Linking a galaxy's color to its formation history requires understanding star formation and how stars emit across wavelengths:  
 
-- **Disk galaxies:** Galaxies with a more intricate light profile, characterized by stellar orbits predominantly in a rotating disk, making them "rotationally supported."
+- **Bluer wavelengths** trace more massive, recently formed stars, revealing the galaxy’s recent history, such as periods of sustained star formation.  
+- **Redder wavelengths** trace lower-mass stars that formed earlier, providing insights into the galaxy's long-term history and formation.  
 
-- **Irregulars:** Galaxies that do not fit into the first two categories, often displaying complex or asymmetric light profiles, such as those resulting from merger events.
+This also means that certain structures, such as star-forming knots or spiral arms, are more prominent in bluer wavelengths.  
 
-We will begin by using light profile fitting tools on simulated galaxies to distinguish between elliptical and disk
-galaxies, employing one of the methods astronomers use for galaxy classification. We will not consider irregular
-galaxies in this project, which are difficult to fit with light profiles due to their complex structure.
+Understanding how galaxy observations vary with wavelength is essential. For this task, the James Webb Space Telescope provides data in four filters:  
 
-Next, we will apply these tools to James Webb Space Telescope (JWST) images of real galaxies to classify a small sample
-into elliptical and disk categories.
+Understanding how galaxy observations vary with wavelength is essential. For this task, the James Webb Space Telescope provides data in four filters:  
 
-The research project concludes with an open-ended task: to explore this classification further by reading more on the
-division between elliptical and disk galaxies and writing a short report on the subject.
+- `F115W`: Observations in the near-infrared at 1.15 microns.
+- `F150W`: Observations in the near-infrared at 1.50 microns.
+- `F277W`: Observations in the mid-infrared at 2.77 microns.
+- `F444W`: Observations in the mid-infrared at 4.44 microns. 
 
-__Task 1: Structural Decomposition__
+__Overview__
 
-To classify galaxies as elliptical or disk galaxies, the following light profile fitting method is applied:
+We will begin by using light profile fitting tools on simulated galaxies, where the appearance of the simulated
+galaxies vary over wavelength. 
 
-- **Elliptical galaxies**: These typically exhibit a Sersic light profile with a `sersic_index` ranging from 2.5 to 4.0. Thus, if a Sersic profile fitted to a galaxy results in an inferred `sersic_index` above 2.5, the galaxy is likely elliptical.
+Next, we will apply these tools to James Webb Space Telescope (JWST) images of real galaxies to make our own
+inference on how a galaxy's appearance changes over wavelength.
 
-- **Disk galaxies**: These generally have a Sersic light profile with a `sersic_index` of 1.0. Therefore, if a Sersic profile fitted to a galaxy yields an inferred `sersic_index` below 2.5, the galaxy is likely a disk galaxy.
+The research project concludes with you writing a report, that includes a literature review on an aspect of galaxy
+colours and presents some of the results of your JWST image analysis.
+
+__Task 1: Simulations__
+
+In this task, we fit simulated images of galaxies, to verify that your light profile fitting analysis works, before
+applying it to real James Webb Space Telescope images of galaxies in task 3.
+
+To investigate how a galaxy's appearance changes over wavelength, we fit light profiles to images of galaxies
+observed at different wavelengths.
 
 **Task Instructions:**
 
-1. Navigate to the folder `dataset/task_1_structure`, where you will find two simulated galaxy datasets: `disk` and `elliptical`.
+1. Navigate to the folder `dataset/task_2_colours`, where you will find the 
+simulated datasets `F115W`, `F150W`, `F277W`, and `F444W`.
 
 2. Use the light profile fitting tools to fit a Sersic light profile to each dataset.
 
-3. Verify that the fitting results align with the true `sersic_index` values:
-
-   - The galaxy dataset named `disk` has a true `sersic_index` of **1.0**.
-   - The galaxy dataset named `elliptical` has a true `sersic_index` of **4.0**.
-
-By successfully fitting the Sersic profile and recovering these values, you will confirm the accuracy of your light profile fitting tools.
+3. Verify that the fitting results demonstrate a trend where the `effective_radius` increases with wavelength. 
+   Specifically, the `effective_radius` should be lowest in the F115W data and highest in the F444W data.
 """
 # INSERT YOUR CODE HERE
 
 """
-__Task 2: Model Comparison__
+__Task 2: Morphological Features__
 
-Certain Sersic profiles have specific names when their `sersic_index` takes particular values:
+As discussed earlier, the appearance of galaxies at different wavelengths can reveal different morphological features.
 
-- A Sersic profile with a **`sersic_index` of 4.0** is called a **De Vaucouleurs profile**. In **PyAutoGalaxy**, it can be fitted using the `ag.lp.DevVaucouleurs` class.
-- A Sersic profile with a **`sersic_index` of 1.0** is called an **Exponential profile**. In **PyAutoGalaxy**, it can be fitted using the `ag.lp.Exponential` class.
+Before we perform light profile fitting of the JWST images, this task therefore involves visually inspecting the
+JWST images of each galaxy and noting any morphological features that are visible at different wavelengths.
 
-These classes allow you to model the light profiles of galaxies with predefined Sersic indices, using the same Python code introduced in previous tutorials.
+In the folder `dataset/task_2_colours/jwst`, you will find 10 images of real galaxies observed with the James Webb
+Space Telescope (JWST), all observed at the four wavelengths `F115W`, `F150W`, `F277W`, `F444W`. 
 
-**Task Instructions:**
+You should therefore first familiarize yourself with common features observed in galaxies, in particular spiral
+arms, bars, bulges, disks and knots of star formation. Then, you should visually inspect the JWST images
+and makes notes of where you think you see these featurs in the data.
 
-1. Fit the `De Vaucouleurs` profile (`ag.lp.DevVaucouleurs`) to the `elliptical` galaxy dataset and 
-   the `Exponential` profile (`ag.lp.Exponential`) to the `disk` galaxy dataset, and confirm that the fits are 
-   successful.
-
-2. Fit both the `De Vaucouleurs` and `Exponential` profiles to the other dataset (`elliptical` and `disk`) and verify
-   that the fits are unsuccessful using the `log_likelihood` values.
-
-By completing this task, you will confirm that the `De Vaucouleurs` and `Exponential` profiles accurately capture the
-structure of elliptical and disk galaxies, respectively, using **PyAutoGalaxy**'s specialized light profile fitting tools.
+These features are difficult to fit with light profiles using the tools you learned in the previous tutorial,
+therefore noting down their presence will be important for the next task.
 """
 # INSERT YOUR CODE HERE
 
 """
 __Task 3: Real Galaxies__
 
-In the folder `dataset/task_1_structure/jwst`, you will find 10 images of real galaxies observed with the James Webb
-Space Telescope (JWST). Your objective is to classify each galaxy as either elliptical or disk-shaped using light profile fitting tools.
+Now that you have visually inspected the JWST images of galaxies, your objective is to fit the different wavelength
+data with light profiles and compare how the results vary with wavelength. 
 
-You can achieve this by applying either of the methods discussed earlier or by combining them for a more robust
-classification.
+For 3 galaxies of your choice, use the light profile fitting tools to fit each galaxy at each wavelength of data
+and make a plot where wavelength is on the x axis and `effective_radius` is on the y axis. How do these galaxies
+change their size over wavelength?
 
-Keep in mind that real galaxies are inherently complex, often exhibiting additional emission and structural features
-that may not be perfectly captured by a simple light profile. As a result, the fits will likely show significantly
+Once you are content with the results, read below on task 4 on the report you will write. This report should include 
+JWST analysis results specific to the aspect of galaxy colours you choose to write about. Therefore you will
+need to tailor your JWST analysis to the specific subject matter you choose to write about and this analyse a
+larger sample of galaxies than just the 3 you chose above.
+
+__Residuals__
+
+Keep in mind that real galaxies are inherently complex, exhibiting the structural features you noted in task 2, that
+may not be perfectly captured by a simple light profile. As a result, the fits will likely show significantly
 larger residuals compared to those from simulated galaxies.
-
-Analyzing these residuals can offer further insights into whether a galaxy is elliptical or disk-shaped and reveal
-properties that these residuals might represent.
 """
 # INSERT YOUR CODE HERE
 
 """
 __Task 4: Report__
 
-For the final task, you are required to write a short report on the division between elliptical and disk galaxies.
+The final task involves writing a report, combining a literature review with an analysis of the JWST images.
 
-The subject matter is open ended, but you may wish to consider the following points:
+**Literature Review:**
 
-- How does the division of galaxy structures into elliptical and disk galaxies relate to the original classification
-  scheme proposed by Edwin Hubble?
+The report should include a concise literature review focusing on a specific topic related to how the appearance of 
+galaxies changes over wavelength.
+
+You are free to choose your focus, but here are some suggested topics and questions to consider:
+
+- Familiarize yourself with what a galaxy redshift is, and consider how the redshift of a galaxy can affect its
+  appearance depending on which wavelengths you observe it at.
   
-- What are the key differences between elliptical and disk galaxies in terms of their stellar dynamics?
+- Research how the wavelength at which stars emit light depends on the properties of the stars, and relate this
+  to how it affects the appearance of galaxies at different wavelengths.
 
-- What are the key differences between elliptical and disk galaxies in terms of their current star formation activity
-  and star formation histories?
+- Do more reading on the types of morphological features that are visible in galaxies at different wavelengths,
+  and consider why these features are more visible at certain wavelengths.
+  
+**JWST Analysis:**
+
+The report should also include figures and results from your analysis of JWST images, directly linked to the aspect of
+the literature you choose to write about. 
+
+You are expected to build on the analysis you performed in Task 3, for example reporting different aspects of the 
+results and expanding it to more than 3 galaxies.
+
+You should link these results to the topics discussed in your literature review, providing a coherent connection 
+between your discussion and the practical JWST analysis and results.
 """
