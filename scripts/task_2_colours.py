@@ -54,15 +54,11 @@ Linking a galaxy's color to its formation history requires understanding star fo
 - **Bluer wavelengths** trace more massive, recently formed stars, revealing the galaxy’s recent history, such as periods of sustained star formation.  
 - **Redder wavelengths** trace lower-mass stars that formed earlier, providing insights into the galaxy's long-term history and formation.  
 
-This also means that certain structures, such as star-forming knots or spiral arms, are more prominent in bluer wavelengths.  
+This also means that certain structures, such as star-forming knots or spiral arms, are more prominent in bluer wavelengths.    
 
-Understanding how galaxy observations vary with wavelength is essential. For this task, the James Webb Space Telescope provides data in four filters:  
-
-Understanding how galaxy observations vary with wavelength is essential. For this task, the James Webb Space Telescope provides data in four filters:  
+Understanding how galaxy observations vary with wavelength is essential. For this task, the James Webb Space Telescope provides data in two filters:  
 
 - `F115W`: Observations in the near-infrared at 1.15 microns.
-- `F150W`: Observations in the near-infrared at 1.50 microns.
-- `F277W`: Observations in the mid-infrared at 2.77 microns.
 - `F444W`: Observations in the mid-infrared at 4.44 microns. 
 
 __Overview__
@@ -87,7 +83,7 @@ observed at different wavelengths.
 **Task Instructions:**
 
 1. Navigate to the folder `dataset/task_2_colours`, where you will find the 
-simulated datasets `F115W`, `F150W`, `F277W`, and `F444W`.
+simulated datasets `F115W` and `F444W`.
 
 2. Use the light profile fitting tools to fit a Sersic light profile to each dataset.
 
@@ -105,7 +101,7 @@ Before we perform light profile fitting of the JWST images, this task therefore 
 JWST images of each galaxy and noting any morphological features that are visible at different wavelengths.
 
 In the folder `dataset/task_2_colours/jwst`, you will find 10 images of real galaxies observed with the James Webb
-Space Telescope (JWST), all observed at the four wavelengths `F115W`, `F150W`, `F277W`, `F444W`. 
+Space Telescope (JWST), all observed at the two wavelengths `F115W` and `F444W`. 
 
 You should therefore first familiarize yourself with common features observed in galaxies, in particular spiral
 arms, bars, bulges, disks and knots of star formation. Then, you should visually inspect the JWST images
