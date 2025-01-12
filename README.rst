@@ -10,14 +10,12 @@ https://mybinder.org/v2/gh/Jammy2211/BSc_Galaxies_Project/HEAD
 Project Structure
 -----------------
 
-The project consists of four Jupiter notebooks describing different aspects of galaxy morphology analysis.
+The project consists of a Jupyter notebook called ‘`tutorial.ipynb‘` which is comprised of four sections describing different aspects of galaxy morphology analysis:
 
-The notebooks are as follows:
-
-- ``tutorial_1_grids_and_galaxies.ipynb``: How grids of (y,x) coordinates are used to create images of galaxies that ultimately quantify their morphology.
-- ``tutorial_2_data.ipynb``: Simulating and inspecting telescope imaging data of a galaxy, for example from the Hubble Space Telescope.
-- ``tutorial_3_fitting.ipynb``: How to fit imaging data of a galaxy and quantify whether a fit is good or bad.
-- ``tutorial_4_non_linear_searches.ipynb``: Performing model-fitting via a non-linear search to find the best-fit models describing a galaxy's morphology.
+- ``section_1_grids_and_galaxies.ipynb``: How grids of (y,x) coordinates are used to create images of galaxies that ultimately quantify their morphology.
+- ``section_2_data.ipynb``: Simulating and inspecting telescope imaging data of a galaxy, for example from the Hubble Space Telescope.
+- ``section_3_fitting.ipynb``: How to fit imaging data of a galaxy and quantify whether a fit is good or bad.
+- ``section_4_non_linear_searches.ipynb``: Performing model-fitting via a non-linear search to find the best-fit models describing a galaxy's morphology.
 
 You will then complete a task which uses what you learned in the tutorials to analyse James Webb Space Telescope imaging data of real galaxies.
 

@@ -32,7 +32,7 @@ easily by running the cell below in the Jupyter Notebook.
 If prompted to restart the session after installation, do so and then rerun the cell to ensure all libraries are
 properly installed.
 """
-!pip install autogalaxy
+!pip install autogalaxy==2024.11.13.2
 !pip install numba
 
 """

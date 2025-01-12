@@ -24,7 +24,7 @@ easily by running the cell below in the Jupyter Notebook.
 If prompted to restart the session after installation, do so and then rerun the cell to ensure all libraries are
 properly installed.
 """
-!pip install autogalaxy
+!pip install autogalaxy==2024.11.13.2
 !pip install numba
 
 """
@@ -34,6 +34,21 @@ Project Setup: Repository Clone
 The code below retrieves the project files from the GitHub repository.
 """
 !git clone https://github.com/Jammy2211/BSc_Galaxies_Project
+
+"""
+Project Setup: Working Directory
+================================
+
+On the left hand side of your Google Collab window, you will see a file explorer. Click on the folder icon. This will
+open the file explorer. The `content` folder is the root directory of your Google Colab environment, within which
+is a folder named `BSc_Galaxies_Project`. This folder contains all the files and scripts for the project, which were
+downloaded by the repository clone command above.
+
+The Python working directory defines where Python looks for data files and scripts to load. To ensure the working
+directory is correctly set to the `BSc_Galaxies_Project` folder, run the code below.
+"""
+import os
+os.chdir("/content/BSc_Galaxies_Project")
 
 """
 BSc Galaxies Project: Introduction
@@ -77,12 +92,6 @@ Here is an overview of what we'll cover in this tutorial:
 The imports below are required to run the tutorials in a Jupiter notebook. They also import the
 `autogalaxy` package and the `autogalaxy.plot` module which are used throughout the tutorials.
 """
-# %matplotlib inline
-# from pyprojroot import here
-# workspace_path = str(here())
-# %cd $workspace_path
-# print(f"Working Directory has been set to `{workspace_path}`")
-
 import numpy as np
 
 import autogalaxy as ag
@@ -652,12 +661,6 @@ Here is an overview of what we'll cover in this tutorial:
 - **Simulator:** Using the `SimulatorImaging` object to simulate imaging data that includes all these effects.
 - **Output:** Saving the simulated data to `.fits` files for use in future tutorials, where .fits is the standard image format used by astronomers.
 """
-# %matplotlib inline
-# from pyprojroot import here
-# workspace_path = str(here())
-# %cd $workspace_path
-# print(f"Working Directory has been set to `{workspace_path}`")
-
 import numpy as np
 from os import path
 import autogalaxy as ag
@@ -904,7 +907,7 @@ The `SimulatorImaging` object lets us create simulated imaging data while includ
 Poisson noise, and background sky all at once:
 """
 simulator = ag.SimulatorImaging(
-    exposure_time=300.0, psf=psf, background_sky_level=0.1, add_poisson_noise_to_data=True
+    exposure_time=300.0, psf=psf, background_sky_level=0.1, add_poisson_noise=True
 )
 
 dataset = simulator.via_galaxies_from(galaxies=galaxies, grid=grid)
@@ -1852,12 +1855,6 @@ If you're interested in learning more about these principles, you can explore re
 - [Nested Sampling](https://www.imperial.ac.uk/media/imperial-college/research-centres-and-groups/astrophysics/public/icic/data-analysis-workshop/2016/NestedSampling_JRP.pdf)
 - [A Zero-Math Introduction to MCMC Methods](https://towardsdatascience.com/a-zero-math-introduction-to-markov-chain-monte-carlo-methods-dcba889e0c50)
 """
-# %matplotlib inline
-# from pyprojroot import here
-# workspace_path = str(here())
-# %cd $workspace_path
-# print(f"Working Directory has been set to `{workspace_path}`")
-
 from os import path
 import autogalaxy as ag
 import autogalaxy.plot as aplt
