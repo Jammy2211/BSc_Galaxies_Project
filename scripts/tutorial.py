@@ -1938,10 +1938,10 @@ should expect when fitting light profiles to a real galaxy.
 
 For instance, consider the `centre` parameter of our `Sersic` light profile. In theory, it could take on any value from 
 negative to positive infinity. However, imaging datasets are reduced such that the galaxy centre is close 
-to (0.0", 0.0"). Therefore, a `GaussianPrior` with `mean=0.0` and `sigma=0.1` is a good description of where the
+to (0.0", 0.0"). Therefore, a `UniformPrior` with `lower_limit=-0.3` and `upper_limit=0.3` is a good description of where the
 galaxy `centre` is. 
 
-For certain tasks, the galaxy have have a different centre in the dataset, therefore the mean of the prior would be 
+For certain tasks, the galaxy have have a different centre in the dataset, therefore the prior would be 
 updated to reflect this.
 
 Priors serve two primary purposes:
@@ -1955,16 +1955,24 @@ parameters. For instance, if we have previously fitted a similar model to anothe
 parameter values, we can incorporate this knowledge into our priors for a new dataset. This approach guides the 
 model fitting process towards parameter values that are more probable based on our prior understanding.
 
-Below, we manually specify the priors on all parameter in our `Sersic` model. The custom priors below are
-close to the default priors, with the main purpose of the code below to show you how to customize priors yourself.
+Below, we manually specify the priors on all parameter in our `Sersic` model. 
+
+The custom priors below are close to the default priors, with the main purpose of the code below to show you how to 
+customize priors yourself. 
+
+However, by making priors more specific to the dataset we are fitting, for example spanning a narrower range of
+values around the anticipated value of a parameter, we can speed up the non-linear search. Therefore, below we:
+
+- Reduce the priors on the `centre` values from between -0.3" and 0.3" to -0.1" and 0.1".
+- Reduce the prior on the `ell_comps` values from between -1.0 and 1.0 to -0.5 and 0.5, which still allow for very elliptical solutions which most galaxies will be covered by.
 """
-model.galaxies.galaxy.bulge.centre.centre_0 = af.GaussianPrior(mean=0.0, sigma=0.1)
-model.galaxies.galaxy.bulge.centre.centre_1 = af.GaussianPrior(mean=0.0, sigma=0.1)
+model.galaxies.galaxy.bulge.centre.centre_0 = af.UniformPrior(lower_limit=-0.1, upper_limit=0.1)
+model.galaxies.galaxy.bulge.centre.centre_1 = af.UniformPrior(lower_limit=-0.1, upper_limit=0.1)
 model.galaxies.galaxy.bulge.ell_comps.ell_comps_0 = af.UniformPrior(
-    lower_limit=-1.0, upper_limit=1.0
+    lower_limit=-0.5, upper_limit=0.5
 )
 model.galaxies.galaxy.bulge.ell_comps.ell_comps_1 = af.UniformPrior(
-    lower_limit=-1.0, upper_limit=1.0
+    lower_limit=-0.5, upper_limit=0.5
 )
 model.galaxies.galaxy.bulge.effective_radius = af.UniformPrior(
     lower_limit=0.0, upper_limit=10.0
@@ -2008,7 +2016,7 @@ Here’s a simplified overview of its process:
 
 2. Compute the log likelihood for each live point.
 
-3. Draw a new point based on the likelihood of the current live points, favoring regions of higher likelihood.
+3. Draw a new point based on the likelihoods of the current live points, such that a point inside of a higher region of parameter space is likely to be drawn.
 
 4. If the new point has a higher likelihood than any existing live point, it becomes a live point, and the lowest likelihood live point is discarded.
 
@@ -2016,6 +2024,8 @@ This iterative process continues, gradually focusing the live points around high
 space until they converge on the highest likelihood solution.
 
 Nested Sampling effectively maps out parameter space, providing accurate estimates of parameters and their uncertainties.
+It features a built-in stopping criterion, meaning the fit will stop running automatically when it has sampled all
+of parameter space and identified the model with the highest likelihood. 
 """
 search = af.Nautilus(
     name="example_0",
@@ -2027,10 +2037,7 @@ search = af.Nautilus(
 """
 To begin the model-fit via the non-linear search, we pass it our model and analysis and begin the fit.
 
-It features a built-in stopping criterion, meaning the fit will stop running automatically when it has sampled all
-of parameter space and identified the model with the highest likelihood. 
-
-Model fitting typically takes between 5 and 10 minutes to run, which means the Jupyter notebook cell will be running
+Model fitting typically takes between 2 and 10 minutes to run, which means the Jupyter notebook cell will be running
 for this duration of time. Run the cell below to begin the non-linear search, and then read the cell afterwards
 whilst it is running in order to understand how you can inspect the results of the fit during and after it has
 completed.
@@ -2044,6 +2051,8 @@ print(
 
 result = search.fit(model=model, analysis=analysis)
 
+print("The search has finished run - you may now continue the notebook.")
+
 """
 __Output__
 
@@ -2052,7 +2061,7 @@ manually inspect whilst the Jupyter notebook cell is running.
 
 In Google Colab, you can access this folder by clicking the folder icon on the left of the screen and navigating to 
 the `BSc_Galaxies_Project/output` folder. This will contain a folder named `example`, corresponding to the input
-`name=example'` we specified when we created the non-linear search above. 
+`name=example` we specified when we created the non-linear search above. 
 
 The screenshot below shows how your Google Colab should appear when you click the folder icon, with red squares
 highlighting the output folder and other folders which are important and described in the next paragraph:
@@ -2072,7 +2081,7 @@ Inside the unique identifier folder are a number of files you should inspect:
  - `images`: Visualization of the highest likelihood model-fit to the dataset as a file called `subplot_fit.png`.
 
 The files `model.results` and those contained in `images` are only generated after the non-linear search has completed
-`iteration_per_update` number of iterations, which for the input value above of 1000 will take approximately 2-3 minutes.
+`iteration_per_update` number of iterations, which for the input value above of 1000 will take approximately 1 minute.
 
 The Jupyter notebook cell will display when it outputs these results, so you should monitor the cell and look
 for these files once it has performed an update.
@@ -2083,15 +2092,13 @@ Upon completion the non-linear search returns a `Result` object, which contains 
 
 The `info` attribute shows the result in a readable format.
 """
-print("The search has finished run - you may now continue the notebook.")
-
 print(result.info)
 
 """
-One thing the result contains we'll use now is the `FitImaging` object that corresponds to the set of model
+One thing the result contains we use now is the `FitImaging` object that corresponds to the set of model
 parameters that gave the maximum log likelihood solution. 
 
-We plot this object to inspect how good our fit was.
+We plot this object to inspect how good our fit was, showing an excellent fit to the data.
 """
 fit_plotter = aplt.FitImagingPlotter(fit=result.max_log_likelihood_fit)
 fit_plotter.subplot_fit()
@@ -2123,8 +2130,10 @@ space, making the search more efficient and realistic.
 and observed data, quantified by the likelihood function.
 
 Understanding these concepts is crucial as they form the backbone of model fitting and parameter estimation in 
-scientific research and data analysis. In the project tasks, model fitting will be used to perform your
-research project.
+scientific research and data analysis. 
+
+You are now ready to begin the research project you have been assigned, where model fitting will be used to fit real
+images of galaxies from the James Webb Space Telescope and research a particular aspect of galaxy morphology.
 """
 
 
