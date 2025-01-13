@@ -21,8 +21,19 @@ Project Setup: Software Installation
 Next, install the Python software libraries required for this research project. In Google Colab, this can be done
 easily by running the cell below in the Jupyter Notebook.
 
-If prompted to restart the session after installation, do so and then rerun the cell to ensure all libraries are
-properly installed.
+You will be prompted to restart the session, with a message that states:
+
+
+Restart session
+WARNING: The following packages were previously imported in this runtime:
+  [psutil]
+You must restart the runtime in order to use newly installed versions.
+
+Restarting will lose all runtime state, including local variables.
+
+
+When this pop-up appears, click "Restart session", let the Google colab webpage reload and rerun the cell and
+continue with the notebook.
 """
 !pip install autogalaxy==2024.11.13.2
 !pip install numba
@@ -31,7 +42,8 @@ properly installed.
 Project Setup: Repository Clone
 ===============================
 
-The code below retrieves the project files from the GitHub repository.
+The code below downloads the project files from the GitHub repository and stores them in your Google Colab
+directory.
 """
 !git clone https://github.com/Jammy2211/BSc_Galaxies_Project
 
@@ -40,15 +52,25 @@ Project Setup: Working Directory
 ================================
 
 On the left hand side of your Google Collab window, you will see a file explorer. Click on the folder icon. This will
-open the file explorer. The `content` folder is the root directory of your Google Colab environment, within which
-is a folder named `BSc_Galaxies_Project`. This folder contains all the files and scripts for the project, which were
-downloaded by the repository clone command above.
+open the file explorer. 
+
+The `content` folder is the root directory of your Google Colab environment, within which is a folder 
+named `BSc_Galaxies_Project`. This folder contains all the files and scripts for the project, which were downloaded 
+by the repository clone command above.
 
 The Python working directory defines where Python looks for data files and scripts to load. To ensure the working
-directory is correctly set to the `BSc_Galaxies_Project` folder, run the code below.
+directory is correctly set to the `BSc_Galaxies_Project` folder, run the cell below. This cell also updates
+configuration file paths to ensure they point to the correct directories.
 """
 import os
+from autoconf import conf
+
 os.chdir("/content/BSc_Galaxies_Project")
+
+conf.instance.push(
+    new_path="/content/BSc_Galaxies_Project/config",
+    output_path="/content/BSc_Galaxies_Project/output",
+)
 
 """
 BSc Galaxies Project: Introduction
@@ -89,7 +111,7 @@ Here is an overview of what we'll cover in this tutorial:
 - **Galaxies**: Creating galaxies containing light profiles and computing the image of a galaxy.
 - **Units**: Converting the units of a galaxy's image to physical units like kiloparsecs.
 
-The imports below are required to run the tutorials in a Jupiter notebook. They also import the
+The imports below are required to run the tutorials in a Jupyter notebook. They also import the
 `autogalaxy` package and the `autogalaxy.plot` module which are used throughout the tutorials.
 """
 import numpy as np
@@ -133,6 +155,11 @@ grid_plotter.figure_2d()
 """
 Each coordinate in the grid corresponds to an arc-second position. Below, we print a few of these coordinates to see 
 the values.
+
+To print these values, we use the `native` attribute of the grid, which returns the grid as a 2D NumPy array of
+shape [total_y_pixels, total_x_pixels, 2].
+
+The `native` attribute is used to access many properties of numpy arrays through this tutorial.
 """
 print("(y,x) pixel 0:")
 print(grid.native[0, 0])  # The coordinate of the first pixel.
@@ -145,30 +172,14 @@ print(grid.native[1, 0])  # The coordinate of the 100th pixel.
 print("...")
 
 """
-Grids have two internal representations, `native` and `slim`:
-
-- `native`: A 2D array with shape [total_y_pixels, total_x_pixels, 2], where the 2 corresponds to the (y,x) coordinates.
-- `slim`: A 1D array with shape [total_y_pixels * total_x_pixels, 2], where the coordinates are 'flattened' into a single list.
-
-These formats are useful for different calculations and plotting. Here, we show the same coordinate using both formats.
-"""
-print("(y,x) pixel 0 (accessed via native):")
-print(grid.native[0, 0])
-print("(y,x) pixel 0 (accessed via slim 1D):")
-print(grid.slim[0])
-
-"""
-We can also check the shapes of the `Grid2D` object in both `native` and `slim` formats. For this grid, 
-the `native` shape is (101, 101, 2) and the `slim` shape is (10201, 2).
+We can also check the `shape_native` of the `Grid2D` object.
 """
 print(grid.native.shape)
-print(grid.slim.shape)
 
 """
-For these tutorials, you don't need to fully understand why grids have both `native` and `slim` representations and
-should simply us whatever is most intuitive for the task you are performing.
+For these tutorials, you should use whatever format is most intuitive for the task you are performing.
 
-*Exercise: Try creating grids with different `shape_native` and `pixel_scales` using the `ag.Grid2D.uniform()` function above.  Observe how the grid coordinates change when you adjust `shape_native` and `pixel_scales`.*
+*Exercise: Try creating grids with different `shape_native` and `pixel_scales` using the `ag.Grid2D.uniform()` function above.  Print the grid (y,x) coordinates and observe how they change when you adjust `shape_native` and `pixel_scales`.*
 
 __Geometry__
 
@@ -377,17 +388,12 @@ array_plotter.set_title("Sersic Image via Light Profile")
 array_plotter.figure_2d()
 
 """
-The `image` is returned as an `Array2D` object. Similar to a `Grid2D`, it has two forms:
+The `image` is returned as an `Array2D` object. 
 
- - `native`: A 2D array with shape [total_y_image_pixels, total_x_image_pixels].
- - `slim`: A 1D array that flattens this data into shape [total_y_image_pixels * total_x_image_pixels].
-
-The `native` form is often used for visualizations, while the `slim` form can be useful for certain calculations.
+Similar to a `Grid2D`, it is accessed via the `native` attribute. which is a 2D NumPy array of shape [total_y_pixels, total_x_pixels].
 """
 print("Intensity of pixel 0:")
 print(image.native[0, 0])
-print("Intensity of pixel 1:")
-print(image.slim[1])
 
 """
 To visualize the light profile's image, we use a `LightProfilePlotter`.
@@ -1170,49 +1176,25 @@ print("Mask2D:")
 print(dataset.mask)
 
 """
-In earlier tutorials, we discussed how grids and arrays have `native` and `slim` representations:
+After applying the mask, the `native` representation of the data changes slighty.
 
-- `native`: Represents the original 2D shape of the data, maintaining the full pixel array of the image.
-- `slim`: Represents a 1D array containing only the values from unmasked pixels, allowing for more efficient 
-  processing when working with large images.
+The 2D array keeps its original shape, [total_y_pixels, total_x_pixels], but masked pixels (those where the mask is True) are set to 0.0.
 
-After applying the mask, the `native` and `slim` representations change as follows:
+Let's verify this by checking the `shape_native` of the data and printing a value at the edge which will have been
+set to 0.0 and a value near the center which will be unchanged.
+"""
+print("Shape of the masked data:")
+print(dataset.data.shape_native)
 
-- `native`: The 2D array keeps its original shape, [total_y_pixels, total_x_pixels], but masked pixels (those where 
-  the mask is True) are set to 0.0.
-- `slim`: This now only contains the unmasked pixel values, reducing the array size 
-  from [total_y_pixels * total_x_pixels] to just the number of unmasked pixels.
-
-Let's verify this by checking the shape of the data in its `slim` representation.
-"""
-print("Number of unmasked pixels:")
-print(dataset.data.native.shape)
-print(
-    dataset.data.slim.shape
-)  # This should be lower than the total number of pixels, e.g., 100 x 100 = 10,000
-
-"""
-The `mask` object also has a `pixels_in_mask` attribute, which gives the number of unmasked pixels. This should 
-match the size of the `slim` data structure.
-"""
-print(dataset.data.mask.pixels_in_mask)
-
-"""
-We can use the `slim` attribute to print the first unmasked values from the image and noise map:
-"""
-print("First unmasked image value:")
-print(dataset.data.slim[0])
-print("First unmasked noise map value:")
-print(dataset.noise_map.slim[0])
-
-"""
-Additionally, we can verify that the `native` data structure has zeros at the edges where the mask is applied and 
-retains non-zero values in the central unmasked regions.
-"""
 print("Example masked pixel in the image's native representation at its edge:")
 print(dataset.data.native[0, 0])
 print("Example unmasked pixel in the image's native representation at its center:")
-print(dataset.data.native[48, 48])
+print(dataset.data.native[50, 50])
+
+"""
+The `mask` object also has a `pixels_in_mask` attribute, which gives the number of unmasked pixels.
+"""
+print(dataset.data.mask.pixels_in_mask)
 
 """
 __Masked Grid__
@@ -1305,8 +1287,8 @@ represents the image data.
 The `FitImaging` object handles this internally, but evaluating the model image in the additional regions outside the mask
 that are close enough to the mask edge to be blurred into the mask. 
 """
-print("First model image pixel:")
-print(fit.model_data.slim[0])
+print("Central model image pixel:")
+print(fit.model_data.native[50, 50])
 fit_imaging_plotter.figures_2d(model_image=True)
 
 """
@@ -1325,17 +1307,17 @@ good (e.g. low residuals) and where it is bad (e.g. high residuals).
 
 The expression for the residual map is simply:
 
-\[ \text{residual} = \text{data} - \text{model\_data} \]
+`residual_map` = (`data` - `model_data`)
 
 The residual-map is plotted below, noting that all values are very close to zero because the fit is near perfect.
 The only non-zero residuals are due to noise in the image.
 """
 residual_map = dataset.data - fit.model_data
-print("First residual-map pixel:")
-print(residual_map.slim[0])
+print("Central residual-map pixel:")
+print(residual_map.native[50, 50])
 
-print("First residual-map pixel via fit:")
-print(fit.residual_map.slim[0])
+print("Central residual-map pixel via fit:")
+print(fit.residual_map.native[50, 50])
 
 fit_imaging_plotter.figures_2d(residual_map=True)
 
@@ -1347,7 +1329,7 @@ amount of noise in that pixel.
 The `normalized_residual_map` divides the residual-map by the noise-map, giving the residual in units of the noise.
 Its expression is:
 
-\[ \text{normalized\_residual} = \frac{\text{residual\_map}}{\text{noise\_map}} = \frac{\text{data} - \text{model\_data}}{\text{noise\_map}} \]
+ `normalized_residual_map` = `residual_map` / `noise_map` = (`data` - `model_data`) / `noise_map`
 
 If you're familiar with the concept of standard deviations (sigma) in statistics, the normalized residual map represents 
 how many standard deviations the residual is from zero. For instance, a normalized residual of 2.0 (corresponding 
@@ -1355,11 +1337,11 @@ to a 95% confidence interval) means that the probability of the model underestim
 """
 normalized_residual_map = residual_map / dataset.noise_map
 
-print("First normalized residual-map pixel:")
-print(normalized_residual_map.slim[0])
+print("Central normalized residual-map pixel:")
+print(normalized_residual_map.native[50, 50])
 
-print("First normalized residual-map pixel via fit:")
-print(fit.normalized_residual_map.slim[0])
+print("Central normalized residual-map pixel via fit:")
+print(fit.normalized_residual_map.native[50, 50])
 
 fit_imaging_plotter.figures_2d(normalized_residual_map=True)
 
@@ -1369,7 +1351,7 @@ measure of goodness of fit.
 
 The chi-squared map is calculated as:
 
-$\chi^2 = \sum \left(\frac{\text{data} - \text{model\_data}}{\text{noise\_map}}\right)^2$
+`chi_squared_map` = (`normalized_residuals`) ** 2.0 = ((`data` - `model_data`)**2.0)/(`variances`)
 
 Squaring the normalized residual map ensures all values are positive. For instance, both a normalized residual of -0.2 
 and 0.2 would square to 0.04, indicating the same quality of fit in terms of `chi_squared`.
@@ -1378,11 +1360,11 @@ As seen from the normalized residual map, it's evident that the model provides a
 case because the chi-squared values are close to zero.
 """
 chi_squared_map = (normalized_residual_map) ** 2
-print("First chi-squared pixel:")
-print(chi_squared_map.slim[0])
+print("Central chi-squared pixel:")
+print(chi_squared_map.native[50, 50])
 
-print("First chi-squared pixel via fit:")
-print(fit.chi_squared_map.slim[0])
+print("Central chi-squared pixel via fit:")
+print(fit.chi_squared_map.native[50, 50])
 
 fit_imaging_plotter.figures_2d(chi_squared_map=True)
 
@@ -1392,7 +1374,11 @@ called `chi_squared`.
 
 It is defined as the sum of all values in the `chi_squared_map` and is computed as:
 
-\[ \chi^2 = \sum \left(\frac{\text{data} - \text{model\_data}}{\text{noise\_map}}\right)^2 \]
+`chi_squared` = sum(`chi_squared_map`)
+
+This is algebraically written as:
+
+$\chi^2 = \sum \left(\frac{\text{data} - \text{model\_data}}{\text{noise\_map}}\right)^2$
 
 This summing process highlights why ensuring all values in the chi-squared map are positive is crucial. If we 
 didn't square the values (making them positive), positive and negative residuals would cancel each other out, 
@@ -1424,9 +1410,11 @@ Another quantity that contributes to our final assessment of the goodness-of-fit
 
 The `noise_normalization` is computed as the logarithm of the sum of squared noise values in our data: 
 
-\[
-\text{{noise\_normalization}} = \sum \log(2 \pi \text{{noise\_map}}^2)
-\]
+`noise_normalization` = np.sum(np.log(2 * np.pi * `noise_map`**2))
+
+This is algebraically written as:
+
+ $\sum_{\rm  j=1}^{J} { \mathrm{ln}} \left [2 \pi (\text{noise\_map})^2 \right]  \, .$
 
 This quantity is fixed because the noise-map remains constant throughout the fitting process. Despite this, 
 including the `noise_normalization` is considered good practice due to its statistical significance.
@@ -1446,7 +1434,7 @@ the `log_likelihood`.
 This measure is calculated by taking the sum of the `chi_squared` and `noise_normalization`, and then multiplying the 
 result by -0.5:
 
-\[ \text{log\_likelihood} = -0.5 \times \left( \chi^2 + \text{noise\_normalization} \right) \]
+`log_likelihood` = -0.5 * (`chi_squared` + `noise_normalization`)
 
 Don't worry about why we multiply by -0.5; it's a standard practice in statistics to ensure the log likelihood is
 defined correctly.
@@ -2048,10 +2036,10 @@ space until they converge on the highest likelihood solution.
 Nested Sampling effectively maps out parameter space, providing accurate estimates of parameters and their uncertainties.
 """
 search = af.Nautilus(
-    name="example",
+    name="example_0",
     n_live=50,
     iterations_per_update=1000,
-    number_of_cores=4,
+    force_x1_cpu=True # This ensures the Google Colab code runs correctly
 )
 
 """
@@ -2085,7 +2073,7 @@ the `BSc_Galaxies_Project/output` folder. This will contain a folder named `exam
 `name=example'` we specified when we created the non-linear search above. 
 
 Inside this folder is a folder which is a collection of characters, which is a unique identifier which ensures if you 
-rerun the Jupiter notebook cell it loads the results from the previous run, thus saving time by not rerunning the
+rerun the Jupyter notebook cell it loads the results from the previous run, thus saving time by not rerunning the
 non-linear search.
 
 Inside the unique identifier folder are a number of files you should inspect:
@@ -2100,7 +2088,7 @@ Inside the unique identifier folder are a number of files you should inspect:
 The files `model.results` and those contained in `images` are only generated after the non-linear search has completed
 `iteration_per_update` number of iterations, which for the input value above of 1000 will take approximately 2-3 minutes.
 
-The Jupiter notebook cell will display when it outputs these results, so you should monitor the cell and look
+The Jupyter notebook cell will display when it outputs these results, so you should monitor the cell and look
 for these files once it has performed an update.
 
 __Result__
