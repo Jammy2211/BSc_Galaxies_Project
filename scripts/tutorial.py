@@ -23,14 +23,14 @@ easily by running the cell below in the Jupyter Notebook.
 
 You will be prompted to restart the session, with a message that states:
 
-
+```
 Restart session
 WARNING: The following packages were previously imported in this runtime:
   [psutil]
 You must restart the runtime in order to use newly installed versions.
 
 Restarting will lose all runtime state, including local variables.
-
+```
 
 When this pop-up appears, click "Restart session", let the Google colab webpage reload and rerun the cell and
 continue with the notebook.
@@ -53,6 +53,11 @@ Project Setup: Working Directory
 
 On the left hand side of your Google Collab window, you will see a file explorer. Click on the folder icon. This will
 open the file explorer. 
+
+The screenshot below shows what should be displayed, for now you do not need to worry about the contents
+of this folder but later you will use it to inspect the output of the code you run:
+
+![ColabGolder](https://github.com/Jammy2211/BSc_Galaxies_Project/blob/master/Colab_Example_Folder.png?raw=true)
 
 The `content` folder is the root directory of your Google Colab environment, within which is a folder 
 named `BSc_Galaxies_Project`. This folder contains all the files and scripts for the project, which were downloaded 
@@ -2072,6 +2077,11 @@ In Google Colab, you can access this folder by clicking the folder icon on the l
 the `BSc_Galaxies_Project/output` folder. This will contain a folder named `example`, corresponding to the input
 `name=example'` we specified when we created the non-linear search above. 
 
+The screenshot below shows how your Google Colab should appear when you click the folder icon, with red squares
+highlighting the output folder and other folders which are important and described in the next paragraph:
+
+![ColabFolderOutput](https://github.com/Jammy2211/BSc_Galaxies_Project/blob/master/Colab_Example_Folder_Output.png?raw=true)
+
 Inside this folder is a folder which is a collection of characters, which is a unique identifier which ensures if you 
 rerun the Jupyter notebook cell it loads the results from the previous run, thus saving time by not rerunning the
 non-linear search.
@@ -2082,8 +2092,7 @@ Inside the unique identifier folder are a number of files you should inspect:
  
  - `model.results`: Summarizes the highest likelihood model inferred so far including errors.
  
- - `images`: Visualization of the highest likelihood model-fit to the dataset, (e.g. a fit subplot showing the 
- galaxies, model data and residuals).
+ - `images`: Visualization of the highest likelihood model-fit to the dataset as a file called `subplot_fit.png`.
 
 The files `model.results` and those contained in `images` are only generated after the non-linear search has completed
 `iteration_per_update` number of iterations, which for the input value above of 1000 will take approximately 2-3 minutes.

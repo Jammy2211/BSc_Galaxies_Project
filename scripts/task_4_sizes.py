@@ -16,10 +16,10 @@ instructions are also detailed in the accompanying document, which includes imag
 First, connect Google Colab to your Google account and Google Drive. This setup ensures your work is autosaved and
 preserved even if you close your browser tab or window. Next, open the tutorial notebook in Colab, click on
 the "File" tab in the top-left corner, and select "Save a copy in Drive." This action will create a duplicate of the
-notebook and open it in a new tab titled "Copy of task_filename.ipynb."
+notebook and open it in a new tab titled "Copy of tutorial.ipynb."
 
 In the new tab, rename the notebook by clicking on its title in the top-left corner. Change it
-from "Copy of task_filename.ipynb" to "YOUR_NAME_task_filename.ipynb," replacing "YOUR_NAME" with your actual name.
+from "Copy of tutorial.ipynb" to "YOUR_NAME_tutorial.ipynb," replacing "YOUR_NAME" with your actual name.
 With these steps complete, the notebook will now autosave your changes to your Google Drive, ensuring your
 progress is retained.
 
@@ -29,8 +29,19 @@ Project Setup: Software Installation
 Next, install the Python software libraries required for this research project. In Google Colab, this can be done
 easily by running the cell below in the Jupyter Notebook.
 
-If prompted to restart the session after installation, do so and then rerun the cell to ensure all libraries are
-properly installed.
+You will be prompted to restart the session, with a message that states:
+
+```
+Restart session
+WARNING: The following packages were previously imported in this runtime:
+  [psutil]
+You must restart the runtime in order to use newly installed versions.
+
+Restarting will lose all runtime state, including local variables.
+```
+
+When this pop-up appears, click "Restart session", let the Google colab webpage reload and rerun the cell and
+continue with the notebook.
 """
 !pip install autogalaxy==2024.11.13.2
 !pip install numba
@@ -39,9 +50,40 @@ properly installed.
 Project Setup: Repository Clone
 ===============================
 
-The code below retrieves the project files from the GitHub repository.
+The code below downloads the project files from the GitHub repository and stores them in your Google Colab
+directory.
 """
 !git clone https://github.com/Jammy2211/BSc_Galaxies_Project
+
+"""
+Project Setup: Working Directory
+================================
+
+On the left hand side of your Google Collab window, you will see a file explorer. Click on the folder icon. This will
+open the file explorer. 
+
+The screenshot below shows what should be displayed, for now you do not need to worry about the contents
+of this folder but later you will use it to inspect the output of the code you run:
+
+![ColabGolder](https://github.com/Jammy2211/BSc_Galaxies_Project/blob/master/Colab_Example_Folder.png?raw=true)
+
+The `content` folder is the root directory of your Google Colab environment, within which is a folder 
+named `BSc_Galaxies_Project`. This folder contains all the files and scripts for the project, which were downloaded 
+by the repository clone command above.
+
+The Python working directory defines where Python looks for data files and scripts to load. To ensure the working
+directory is correctly set to the `BSc_Galaxies_Project` folder, run the cell below. This cell also updates
+configuration file paths to ensure they point to the correct directories.
+"""
+import os
+from autoconf import conf
+
+os.chdir("/content/BSc_Galaxies_Project")
+
+conf.instance.push(
+    new_path="/content/BSc_Galaxies_Project/config",
+    output_path="/content/BSc_Galaxies_Project/output",
+)
 
 """
 Task: Sizes
