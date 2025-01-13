@@ -15,7 +15,7 @@ import autogalaxy.plot as aplt
 """
 __Dataset Paths__
 """
-dataset_type = "task_3_mergers"
+dataset_type = "task_3a_mergers"
 dataset_name = "merger_0"
 dataset_path = path.join("dataset", dataset_type, dataset_name)
 
@@ -24,7 +24,7 @@ __Grid__
 """
 grid = ag.Grid2D.uniform(
     shape_native=(150, 150),
-    pixel_scales=0.1,
+    pixel_scales=0.06,
     over_sample_size=8
 )
 

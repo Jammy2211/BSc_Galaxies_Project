@@ -74,6 +74,14 @@ quantitative measurement of whether a bar is present in a galaxy.
 The research project concludes with you writing a report, that includes a literature review on an aspect of galaxy
 colours and presents some of the results of your JWST image analysis.
 
+__Pixel Scale__
+
+In the `tutorial.ipynb` notebook, we introduced the concept of pixel scale, which is the conversion factor between
+arc-seconds and pixels in an image. For the example simulated images, the pixel scale was **0.1 arc-seconds per pixel**.
+
+For the example simulated images and JWST images in this task, the pixel scale is **0.06 arc-seconds per pixel**. You 
+will need to account for this difference when analyzing the JWST images.
+
 __Task 1: Simulations__
 
 In this task, we fit simulated images of galaxies to verify the accuracy of your light profile fitting analysis before 

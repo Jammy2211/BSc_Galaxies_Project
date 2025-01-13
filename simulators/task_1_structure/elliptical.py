@@ -15,7 +15,7 @@ import autogalaxy.plot as aplt
 """
 __Dataset Paths__
 """
-dataset_type = "task_1_structure"
+dataset_type = "task_1a_structure"
 dataset_name = "elliptical"
 dataset_path = path.join("dataset", dataset_type, dataset_name)
 
@@ -23,8 +23,8 @@ dataset_path = path.join("dataset", dataset_type, dataset_name)
 __Grid__
 """
 grid = ag.Grid2D.uniform(
-    shape_native=(100, 100),
-    pixel_scales=0.1,
+    shape_native=(209, 209),
+    pixel_scales=0.06,
     over_sample_size=8
 )
 

@@ -2,12 +2,6 @@
 Simulator: Disk 0
 =================
 """
-# %matplotlib inline
-# from pyprojroot import here
-# workspace_path = str(here())
-# %cd $workspace_path
-# print(f"Working Directory has been set to `{workspace_path}`")
-
 from os import path
 import autogalaxy as ag
 import autogalaxy.plot as aplt
@@ -15,21 +9,27 @@ import autogalaxy.plot as aplt
 """
 __Dataset Paths__
 """
-dataset_type = "task_2_colours"
+dataset_type = "task_2a_colours"
 
-dataset_wavelength_list = ["F115W", "F150W", "F277W", "F444W"]
+dataset_wavelength_list = ["F115W", "F444W"]
+
+shape_native_dict = {
+    "F115W": (419, 419),
+    "F444W": (209, 209)
+}
+
+pixel_scales_dict = {
+    "F115W": 0.03,
+    "F444W": 0.06
+}
 
 wavelength_effective_radius_dict = {
     "F115W": 1.0,
-    "F150W": 1.5,
-    "F277W": 2.0,
     "F444W": 2.5
 }
 
 wavelength_sersic_index_dict = {
     "F115W": 1.0,
-    "F150W": 1.2,
-    "F277W": 1.4,
     "F444W": 1.6
 }
 
@@ -42,8 +42,8 @@ for dataset_wavelength in dataset_wavelength_list:
     __Grid__
     """
     grid = ag.Grid2D.uniform(
-        shape_native=(100, 100),
-        pixel_scales=0.1,
+        shape_native=shape_native_dict[dataset_wavelength],
+        pixel_scales=pixel_scales_dict[dataset_wavelength],
         over_sample_size=8
     )
 
