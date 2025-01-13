@@ -36,4 +36,4 @@ The workspace includes the following additional directories:
 Workspace Version
 -----------------
 
-This version of the workspace is built and tested for using **PyAutoGalaxy v2024.11.6.1**.
+This version of the workspace is built and tested for using **PyAutoGalaxy v2024.11.13.2**.

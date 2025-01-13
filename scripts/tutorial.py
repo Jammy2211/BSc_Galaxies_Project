@@ -182,8 +182,6 @@ We can also check the `shape_native` of the `Grid2D` object.
 print(grid.native.shape)
 
 """
-For these tutorials, you should use whatever format is most intuitive for the task you are performing.
-
 *Exercise: Try creating grids with different `shape_native` and `pixel_scales` using the `ag.Grid2D.uniform()` function above.  Print the grid (y,x) coordinates and observe how they change when you adjust `shape_native` and `pixel_scales`.*
 
 __Geometry__
@@ -212,7 +210,7 @@ grid_plotter.set_title("Grid Centered Around (0.3, 0.5)")
 grid_plotter.figure_2d()
 
 """
-Next, we can rotate the grid by an angle `phi` (in degrees). The rotation is counter-clockwise from the positive x-axis.
+Next, we can rotate the grid by an angle $\phi$ (in degrees). The rotation is counter-clockwise from the positive x-axis.
 
 To rotate the grid:
 
@@ -267,7 +265,7 @@ print(eta[:10])
 Above, the angle $\phi$ (in degrees) was used to rotate the grid, and the axis-ratio $q$ was used to convert the grid 
 to elliptical coordinates.
 
-From now on, we'll describe ellipticity using "elliptical components" $\epsilon_{1}$ and $\epsilon_{2}$, calculated 
+From now on, we describe ellipticity using "elliptical components" $\epsilon_{1}$ and $\epsilon_{2}$, calculated 
 from $\phi$ and $q$:
 
 $\epsilon_{1} = \frac{1 - q}{1 + q} \sin(2\phi)$  
@@ -306,7 +304,7 @@ $I_{\rm Ser} (\eta_{\rm l}) = I \exp \left\{ -k \left[ \left( \frac{\eta}{R} \ri
 In this equation:
 
  - $\eta$ represents the elliptical coordinates of the profile in arc-seconds (refer to earlier sections for elliptical coordinates).
- - $I$ is the intensity normalization of the profile, given in arbitrary units, which controls the overall brightness of the Sersic profile.
+ - $I$ is the intensity normalization of the profile, given in electrons per second, which controls the overall brightness of the Sersic profile.
  - $R$ is the effective radius in arc-seconds, which determines the size of the profile.
  - $n$ is the Sersic index, which defines how 'steep' the profile is, influencing the concentration of light.
  - $k$ is a constant that ensures half the light of the profile lies within the radius $R$, where $k = 2n - \frac{1}{3}$.
@@ -317,7 +315,7 @@ a particular elliptical coordinate.
 elliptical_coordinate = (
     0.5  # The elliptical coordinate where we compute the intensity, in arc-seconds.
 )
-intensity = 1.0  # Intensity normalization of the profile in arbitrary units.
+intensity = 1.0  # Intensity normalization of the profile in electrons per second.
 effective_radius = 2.0  # Effective radius of the profile in arc-seconds.
 sersic_index = 1.0  # Sersic index of the profile.
 k = 2 * sersic_index - (
@@ -381,7 +379,7 @@ With this `Sersic` light profile, we can create an image by passing a grid to it
 The calculation will internally handle all the coordinate transformations and intensity evaluations we performed 
 manually earlier, making it much simpler.
 
-The `Sersic` profile we created just above is different from the one we used to manually compute the image,
+The `Sersic` profile we created above is different from the one we used to manually compute the image,
 so the image will look different. However, the process is the same.
 """
 image = sersic_light_profile.image_2d_from(grid=grid)
@@ -413,7 +411,7 @@ light_profile_plotter.figures_2d(image=True)
 
 """
 The `LightProfilePlotter` also has methods to plot the 1D radial profile of the light profile. This profile shows
-how the intensity of the light changes as a function of distance from the profile's center. This is a more informative
+how the intensity of the light changes as a function of distance from the profile's center. This can be a more informative
 way to visualize the light profile's distribution.
 
 The 1D plot below is a `semilogy` plot, meaning that the x-axis (showing the radial distance in arc-seconds) is linear,
@@ -510,7 +508,7 @@ galaxy_plotter.set_title("Galaxy Bulge+Disk Image")
 galaxy_plotter.figures_2d(image=True)
 
 """
-The bulge dominates the center of the image, and is pretty much the only luminous emission we see can see on a linear
+The bulge dominates the center of the image, and is the majority of luminous emission we see on a linear
 scale. The disk's emission is present, but it is much fainter and spread over a larger area.
 
 We can confirm this using the `subplot_of_light_profiles` method, which plots each individual light profile separately.
@@ -534,9 +532,7 @@ galaxy_plotter.figures_2d(image=True)
 The `figures_1d_decomposed` method allows us to visualize each light profile's contribution in 1D.
 
 1D plots show the intensity of the light profile as a function of distance from the profile’s center. The bulge
-and disk profiles share the same `centre`, meaning that plotting them together shows how they overlap. If the
-`centre` of the profiles were different, they would still be plotted on top of each other, but as a user you
-would need to remember that the profiles are not aligned in 2D.
+and disk profiles share the same `centre`, meaning that plotting them together shows how they overlap.
 """
 galaxy_plotter.set_title("Bulge+Disk 1D Decomposed")
 galaxy_plotter.figures_1d_decomposed(image=True)
@@ -633,7 +629,7 @@ You've learnt the basic quantities used to study galaxy morphology.
 
 Lets summarize what we've learnt:
 
-- **Grids**: WA grid is a set of 2D coordinates that represent the positions where we measure the light of a galaxy. 
+- **Grids**: A grid is a set of 2D coordinates that represent the positions where we measure the light of a galaxy. 
 
 - **Geometry**: How to shift, rotate, and convert grids to elliptical coordinates.
 
@@ -695,9 +691,8 @@ grid = ag.Grid2D.uniform(
 Next, we define the properties of our galaxy. In this tutorial, we’ll represent the galaxy with a bulge using a 
 Sersic light profile.
 
-In the previous tutorial, the units of `intensity` were arbitrary. However, for this tutorial, where we simulate 
-realistic imaging data, the intensity must have specific units. We’ll use units of electrons per second per pixel 
-($e- pix^-1 s^-1$), which is standard for CCD imaging data.
+In the previous tutorial, the units of `intensity` were electrons per second, or $e- pix^-1 s^-1$. To simulate 
+realistic imaging data, the intensity must have these units.
 """
 galaxy = ag.Galaxy(
     redshift=0.5,
@@ -724,7 +719,7 @@ __Optics Blurring__
 
 All images captured using CCDs (like those on the Hubble Space Telescope) experience some level of blurring 
 due to the optics of the telescope. This blurring occurs because the optical system spreads out the light from each 
-point source (e.g., a star or a part of a galaxy).
+source of light (e.g., a star or a part of a galaxy).
 
 The Point Spread Function (PSF) describes how the telescope blurs the image. It can be thought of as a 2D representation 
 of how a single point of light would appear in the image, spread out by the optics. In practice, the PSF is a 2D 
@@ -781,7 +776,7 @@ blurred_image = convolved_image.trimmed_after_convolution_from(
 )  # Trimming back to the original size.
 
 """
-We can now plot the original and the blurred images side by side. This allows us to clearly see how the PSF 
+We can now plot the original and the blurred images. This allows us to clearly see how the PSF 
 convolution affects the appearance of the galaxy, making the image appear softer and less sharp.
 """
 array_plotter = aplt.Array2DPlotter(array=image)
@@ -842,7 +837,7 @@ array_plotter.set_title("Image With Poisson Noise")
 array_plotter.figure_2d()
 
 """
-It is challenging to see the Poisson noise directly in the image above, as it is often subtle. To make the noise more 
+It is challenging to see the Poisson noise directly in the image above. To make the noise more 
 visible, we can subtract the blurred image without Poisson noise from the one with noise.
 
 This subtraction yields the "Poisson noise realization" which highlights the variation in each pixel due to the Poisson 
@@ -952,8 +947,8 @@ This `noise_map` is different from the Poisson noise arrays we plotted earlier. 
 actual noise added to the image due to the random nature of photon-to-electron conversion on the CCD, as calculated 
 using the numpy random module. These noise values are theoretical and cannot be directly measured in real telescope data.
 
-In contrast, the `noise_map` is our best estimate of the noise present in the image, derived from the data itself 
-and used in the fitting process.
+In contrast, the `noise_map` is our best estimate of the noise present in the image, derived from the data itself. 
+It will be used in the next tutorial.
 """
 array_plotter = aplt.Array2DPlotter(array=dataset.noise_map)
 array_plotter.set_title("Simulated Noise Map")
@@ -983,7 +978,7 @@ simulated imaging data.
 It also shows the Data and PSF on a logarithmic (log10) scale, which helps highlight the faint details in these 
 components.
 
-The "Over Sampling" plots on the bottom of the figures display advanced features that can be ignored for now.
+The "Over Sampling" plots on the bottom of the figures display advanced quantities that you should ignore.
 """
 imaging_plotter = aplt.ImagingPlotter(dataset=dataset)
 imaging_plotter.set_title(
@@ -997,9 +992,12 @@ __Output__
 We will now save these simulated data to `.fits` files, the standard format used by astronomers for storing images.
 Most imaging data from telescopes like the Hubble Space Telescope (HST) are stored in this format.
 
-The `dataset_path` specifies where the data will be saved, in this case, in the directory 
-`autogalaxy_workspace/dataset/imaging/simple_example/`, which contains many example images distributed with 
+The `dataset_path` specifies where the data will be saved, in this case, in the Google Colab directory 
+`content/BSc_Galaxies_Project/dataset/imaging/simple_example/`, which contains many example images distributed with 
 the `autogalaxy_workspace`.
+
+Remember that `content/BSc_Galaxies_Project/` is the root directory of the Google Colab environment, and it therefore
+is not specified in the `dataset_path` below.
 
 The files are named `data.fits`, `noise_map.fits`, and `psf.fits`, and will be used in the next tutorial.
 """
@@ -1050,7 +1048,7 @@ best matches the galaxy's appearance in the image. In this tutorial, we'll illus
 data simulated in the previous tutorial. Our goal is to demonstrate how we can recover the parameters of the light
 profiles that we used to create the original simulation, as a proof of concept for the fitting procedure.
 
-The process of fitting data introduces essential statistical concepts like the `model`, `residual_map`, `chi-squared`,
+The process of fitting data introduces essential statistical concepts like the `model_model`, `residual_map`, `chi-squared`,
 `likelihood`, and `noise_map`. These terms are crucial for understanding how fitting works, not only in astronomy but
 also in any scientific field that involves data modeling. This tutorial will provide a detailed introduction to these
 concepts and show how they are applied in practice to analyze astronomical data.
@@ -1078,11 +1076,12 @@ __Dataset__
 We begin by loading the imaging dataset that we will use for fitting in this tutorial. This dataset is identical to the 
 one we simulated in the previous tutorial, representing how a galaxy would appear if captured by a CCD camera.
 
-In the previous tutorial, we saved this dataset as .fits files in the `autogalaxy_workspace/dataset/imaging/simple_example` 
+In the previous tutorial, we saved this dataset as .fits files in the `content/BSc_Galaxies_Project/dataset/imaging/simple_example` 
 folder. The `.fits` format is commonly used in astronomy for storing image data along with metadata, making it a
 standard for CCD imaging.
 
-The `dataset_path` below specifies where these files are located: `autogalaxy_workspace/dataset/imaging/simple_example/`.
+The `dataset_path` below specifies where these files are located: `dataset/imaging/simple_example/`, again
+relative to the Google Colab root directory `content/BSc_Galaxies_Project/`.
 """
 dataset_path = path.join("dataset", "imaging", "simple_example")
 
@@ -1098,7 +1097,7 @@ The `Imaging` object contains three key components: `data`, `noise_map`, and `ps
 
 - `data`: The actual image of the galaxy, which we will analyze.
 
-- `noise_map`: A map indicating the uncertainty or noise level in each pixel of the image, reflecting how much the 
+- `noise_map`: The RMS noise-map indicating the uncertainty or noise level in each pixel of the image, reflecting how much the 
   observed signal in each pixel might fluctuate due to instrumental or background noise.
   
 - `psf`: The Point Spread Function, which describes how a point source of light is spread out in the image by the 
@@ -1124,15 +1123,15 @@ The signal-to-noise map of the image highlights areas where the signal (light fr
 background noise. Values above 3.0 indicate regions where the galaxy's light is detected with a signal-to-noise ratio
 of at least 3, while values below 3.0 are dominated by noise, where the galaxy's light is not clearly distinguishable.
 
-To ensure the fitting process focuses only on meaningful data, we typically mask out regions with low signal-to-noise 
+To ensure the fitting process focuses only on meaningful data, we mask out regions with low signal-to-noise 
 ratios, removing areas dominated by noise from the analysis. This allows the fitting process to concentrate on the 
 regions where the galaxy is clearly detected.
 
 Here, we create a `Mask2D` to exclude certain regions of the image from the analysis. The mask defines which parts of 
 the image will be used during the fitting process.
 
-For our simulated image, a circular 3" mask centered at the center of the image is appropriate, since the simulated 
-galaxy was positioned at the center.
+For our simulated image, a circular 3.0" mask centered at the center of the image is appropriate, since the simulated 
+galaxy iss positioned at the center.
 """
 mask = ag.Mask2D.circular(
     shape_native=dataset.shape_native,
@@ -1237,7 +1236,7 @@ __Fitting__
 
 Now that our data is masked, we are ready to proceed with the fitting process.
 
-Fitting the data is done using the `Galaxy` and `Galaxies objects that we introduced in tutorial 2. We will start by 
+Fitting the data is done using the `Galaxy` and `Galaxies` objects that we introduced in tutorial 2. We will start by 
 setting up a `Galaxies`` object, using the same galaxy configuration that we previously used to simulate the 
 imaging data. This setup will give us what is known as a 'perfect' fit, as the simulated and fitted models are identical.
 """
@@ -1268,13 +1267,12 @@ galaxies_plotter.figures_2d(image=True)
 Now, we proceed to fit the image by passing both the `Imaging` and `Galaxies` objects to a `FitImaging` object. 
 This object will compute key quantities that describe the fit’s quality:
 
-`image`: Creates an image of the galaxies using their image_2d_from() method.
-`model_data`: Convolves the galaxy image with the data's PSF to account for the effects of telescope optics.
-`residual_map`: The difference between the model data and observed data.
-`normalized_residual_map`: Residuals divided by noise values, giving units of noise.
-`chi_squared_map`: Squares the normalized residuals.
-`chi_squared` and `log_likelihood`: Sums the chi-squared values to compute chi_squared, and converts this into 
-a log_likelihood, which measures how well the model fits the data (higher values indicate a better fit).
+- `image`: Creates an image of the galaxies using their image_2d_from() method.
+- `model_data`: Convolves the galaxy image with the data's PSF to account for the effects of telescope optics.
+- `residual_map`: The difference between the model data and observed data.
+- `normalized_residual_map`: Residuals divided by noise values, giving units of noise.
+- `chi_squared_map`: Squares the normalized residuals.
+- `chi_squared` and `log_likelihood`: Sums the chi-squared values to compute chi_squared, and converts this into a log_likelihood, which measures how well the model fits the data (higher values indicate a better fit).
 
 Let's create the fit and inspect each of these attributes:
 """
@@ -1282,15 +1280,7 @@ fit = ag.FitImaging(dataset=dataset, galaxies=galaxies)
 fit_imaging_plotter = aplt.FitImagingPlotter(fit=fit)
 
 """
-The `model_data` represents the galaxy's image after accounting for effects like PSF convolution. 
-
-An important technical note is that when we mask data, we discussed above how the image of the galaxy is not evaluated
-outside the mask and is set to zero. This is a problem for PSF convolution, as the PSF blurs light from these regions
-outside the mask but at its edge into the mask. They must be correctly evaluated to ensure the model image accurately
-represents the image data.
-
-The `FitImaging` object handles this internally, but evaluating the model image in the additional regions outside the mask
-that are close enough to the mask edge to be blurred into the mask. 
+The `model_data` represents the galaxy's image after fully accounting for effects like PSF convolution. 
 """
 print("Central model image pixel:")
 print(fit.model_data.native[50, 50])
@@ -1307,7 +1297,7 @@ fit_imaging_plotter.figures_2d(data=True)
 fit_imaging_plotter.figures_2d(model_image=True)
 
 """
-The `residual_map` is the different between the observed image and model image, showing where in the image the fit is
+The `residual_map` is the difference between the observed image and model image, showing where in the image the fit is
 good (e.g. low residuals) and where it is bad (e.g. high residuals).
 
 The expression for the residual map is simply:
@@ -1361,7 +1351,7 @@ The chi-squared map is calculated as:
 Squaring the normalized residual map ensures all values are positive. For instance, both a normalized residual of -0.2 
 and 0.2 would square to 0.04, indicating the same quality of fit in terms of `chi_squared`.
 
-As seen from the normalized residual map, it's evident that the model provides a good fit to the data, in this
+As seen from the normalized residual map, it is evident that the model provides a good fit to the data, in this
 case because the chi-squared values are close to zero.
 """
 chi_squared_map = (normalized_residual_map) ** 2
@@ -1383,7 +1373,7 @@ It is defined as the sum of all values in the `chi_squared_map` and is computed 
 
 This is algebraically written as:
 
-$\chi^2 = \sum \left(\frac{\text{data} - \text{model\_data}}{\text{noise\_map}}\right)^2$
+$\chi^2 = \sum \left(\frac{\text{data} - \text{model_data}}{\text{noise_map}}\right)^2$
 
 This summing process highlights why ensuring all values in the chi-squared map are positive is crucial. If we 
 didn't square the values (making them positive), positive and negative residuals would cancel each other out, 
@@ -1419,10 +1409,10 @@ The `noise_normalization` is computed as the logarithm of the sum of squared noi
 
 This is algebraically written as:
 
- $\sum_{\rm  j=1}^{J} { \mathrm{ln}} \left [2 \pi (\text{noise\_map})^2 \right]  \, .$
+ $\sum_{\rm  j=1}^{J} { \mathrm{ln}} \left [2 \pi (\text{noise_map})^2 \right]  \, .$
 
 This quantity is fixed because the noise-map remains constant throughout the fitting process. Despite this, 
-including the `noise_normalization` is considered good practice due to its statistical significance.
+including the `noise_normalization` is considered good practice.
 
 Understanding the exact meaning of `noise_normalization` isn't critical for our primary goal of successfully 
 fitting a model to a dataset. Essentially, it provides a measure of how well the noise properties of our data align 
@@ -1449,17 +1439,17 @@ print("Log Likelihood = ", log_likelihood)
 print("Log Likelihood via fit = ", fit.log_likelihood)
 
 """
-In the previous discussion, we noted that a lower \(\chi^2\) value indicates a better fit of the model to the 
+In the previous discussion, we noted that a lower `chi_squared` value indicates a better fit of the model to the 
 observed data. 
 
-When we calculate the log likelihood, we take the \(\chi^2\) value and multiply it by -0.5. This means that a 
+When we calculate the log likelihood, we take the `chi_squared` value and multiply it by -0.5. This means that a 
 higher log likelihood corresponds to a better model fit. Our goal when fitting models to data is to maximize the 
 log likelihood.
 
-The **reduced \(\chi^2\)** value provides an intuitive measure of goodness-of-fit. Values close to 1.0 suggest a 
+The `reduced_chi_squared`** value provides an intuitive measure of goodness-of-fit. Values close to 1.0 suggest a 
 good fit, while values below or above 1.0 indicate potential underfitting or overfitting of the data, respectively. 
-In contrast, the log likelihood values can be less intuitive. For instance, a log likelihood value printed above 
-might be around 5300.
+In contrast, the log likelihood values can be less intuitive. For instance, the log likelihood value printed above 
+is around 5300.
 
 However, log likelihoods become more meaningful when we compare them. For example, if we have two models, one with 
 a log likelihood of 5300 and the other with 5310 we can conclude that the first model fits the data better 
@@ -1486,8 +1476,7 @@ fit_bad_imaging_plotter.subplot_fit()
 If you're familiar with model-fitting, you've likely encountered terms like 'residuals', 'chi-squared', 
 and 'log_likelihood' before. 
 
-These metrics are standard ways to quantify the quality of a model fit. They are applicable not only to 1D data but 
-also to more complex data structures like 2D images, 3D data cubes, or any other multidimensional datasets.
+These metrics are standard ways in statistics to quantify the quality of a model fit.
 
 __Incorrect Fit__
 
@@ -1532,8 +1521,9 @@ print("New Likelihood:")
 print(fit_bad.log_likelihood)
 
 """
-As expected, we observe that the log likelihood has decreased! This decline confirms that our new model is indeed a 
-worse fit to the data compared to the original model.
+As expected, we observe that the log likelihood has decreased. 
+
+This decline confirms that our new model is indeed a worse fit to the data compared to the original model.
 
 Now, let’s change our galaxy model once more, this time setting it to a position that is far from the true parameters. 
 We will offset the galaxy's center significantly to see how this extreme deviation affects the fit quality.
@@ -1563,7 +1553,7 @@ fit_very_bad_imaging_plotter.subplot_fit()
 
 """
 It is now evident that this model provides a terrible fit to the data. The galaxies do not resemble a plausible 
-representation of our simulated galaxy dataset, which we already anticipated given that we generated the data ourselves!
+representation of our simulated galaxy dataset, which we already anticipated given that we generated the data ourselves.
 
 As expected, the log likelihood has dropped dramatically with this poorly fitting model.
 """
@@ -1624,9 +1614,9 @@ determining if your model is providing a good fit to the data. Aim to increase t
 residuals.
 
 Keep experimenting with different values for a while, seeing how small you can make the residuals and how high you 
-can push the log likelihood. Eventually, you’ll likely reach a point where further improvements become difficult, 
+can push the log likelihood. Eventually, you will reach a point where further improvements become difficult, 
 even after trying many different parameter values. This is a good point to stop and reflect on your first experience 
-with model fitting, and then to scroll to the next cell to see a discussion of the exercise.
+with model fitting.
 """
 galaxy = ag.Galaxy(
     redshift=0.5,
@@ -1653,28 +1643,29 @@ print(fit.log_likelihood)
 Manually guessing model parameters repeatedly is a very inefficient and slow way to find the best fit. If the model 
 were more complex—say, if the `galaxy` had additional light profile components beyond just its `bulge` (like a 
 second `Sersic` profile representing a `disk`)—the model would become so intricate that this manual approach 
-would be practically impossible. This is definitely not how model fitting is done in practice.
+would be practically impossible. This is not how model fitting is done in practice.
 
 However, this exercise has given you a basic intuition for how model fitting works. The statistical inference tools 
-that are actually used for model fitting will be introduced in the next section. Interestingly, these tools are not 
-entirely different from the approach you just tried. Essentially, they also involve iteratively testing models until 
-those with high log likelihoods are found. The key difference is that a computer can perform this process thousands of 
-times, and it does so in a much more efficient and strategic way.
+that are actually used for model fitting will be introduced in the next section. These tools are not entirely different 
+from the approach you just tried. Essentially, they also involve iteratively testing models until those with high log 
+likelihoods are found. The key difference is that a computer can perform this process thousands of times, and it 
+does so in a much more efficient and strategic way.
 
 __Linear Light Profile__
 
 In the example above, we iteratively adjusted the parameters of a `Sersic` light profile to fit the data. There were
 7 parameters in total, which is a lot to adjust manually. Any trick which can reduce the number of parameters we need
-to adjust would therefore be advantageous.
+to adjust would make it easier to find high log likelihood solutions.
 
-This is possible using linear light profiles, which solve for the `intensity` parameter of the light profile via 
-efficient linear  algebra, using a process called an inversion. The details of how an inversion works are not important,
-the thing to note is they always compute `intensity` values for each light profile that give the best 
-fit to the data (e.g. they minimize the chi-squared and therefore maximize the likelihood). 
+This is possible using **linear light profiles**, which solve for the `intensity` parameter of the light profile via 
+efficient linear algebra. The details of how this works are beyond the scope of this tutorial. The key thing to note 
+is they always compute `intensity` values for each light profile that give the best fit to the data given the other
+parameter values (e.g. they always maximize the likelihood). 
 
-Below we show an example using a linear light profile, but replacing the call `ag.lp` with `ag_lp_linear`,
-which if you compare to solutions above you will find have higher likelihood values because the `intensity` is
-always set to maximize the likelihood.
+Below we show an example using a linear light profile, replacing the code `ag.lp` with `ag_lp_linear`.
+If you repeat the process above of manually inputing different solutions into the fit in order to find the highest 
+likelihood solutions, you will find higher likelihood values quicker as there are now 6 parameters to adjust instead
+of 7.
 """
 galaxy = ag.Galaxy(
     redshift=0.5,
@@ -1750,35 +1741,21 @@ To answer these questions, we must therefore fit the dataset with a model of the
 light profile that make up the galaxy we fit. Our goal is the find the combination of light profile parameters that
 best-fit the data, such that the model represents the galaxy, and therefore the Universe, as well as possible.
 
-This process is called model-fitting, or "modeling" for short, and we actually did our first example of this in the
-previous chapter. If you recall, in the fitting tutorial we set up a fit to a simulated dataset where the parameter
-used to simulate the data were unknown, and you guessed the values of the parameters that best fit the data. You
-iteratively improved the model-fit by guessing new parameters, over and over, finding solutions which produced
-higher `log_likelihood` values.
+This process is called model-fitting, or "modeling" for short. This is close to what we just did in the tutorials 
+above, where fit a simulated dataset as if the parameters used to simulate the data were unknown and you manually 
+guessed the values of the parameters that best fit the data. You iteratively improved the model-fit by guessing new 
+parameters, over and over, finding solutions which produced higher `log_likelihood` values.
 
 However, this approach was not optimal: it was manual and slow, we had no certainty that we had found the best
 (e.g. maximum likelihood) solution and for more complex models, with more parameters and light profiles, it would
-have been completely unfeasible.
+have been unfeasible.
 
-In this chapter, we perform modeling as a scientist would actually do it, and introduce the statistical inference
+In this tutorial, we perform modeling as a scientist would actually do it, and introduce the statistical inference
 technique that will ultimately allow us to fit complex models made of many light profiles to real galaxy data,
 and begin learning about real galaxies in the Universe.
 
 This section introduces a number of key statistical concepts that are fundamental to understanding how
 model-fitting works, both for **PyAutoGalaxy** and in general.
-
-__Overview__
-
-In this tutorial, we will use a non-linear search to fit a single Sersic light profile to simulated imaging of a
-galaxy. We will:
-
-- Introduce concept like a "parameter space", "likelihood surface" and "priors", and relate them to how a non-linear
-  search works.
-
-- Introduce the `Analysis` class, which defines the `log_likelihood_function` that quantifies the goodness of fit of a
-  model instance to the data.
-
-- Fit datasets using a "non-linear search" technique called nested sampling.
 
 __Contents__
 
@@ -1786,8 +1763,6 @@ This tutorial is split into the following sections:
 
 - **Parameter Space**: Introduce the concept of a "parameter space" and how it relates to model-fitting.
 - **Non-Linear Search**: Introduce the concept of a "non-linear search" and how it fits models to data.
-- **Nested Sampling**: Introduce the nested sampling search algorithm used in this tutorial.
-- **Deeper Background**: Provide links to resources that more thoroughly describe the statistical principles that underpin non-linear searches.
 - **Data**: Load and plot the galaxy dataset we'll fit.
 - **Model**: Introduce the galaxy model we'll fit to the data.
 - **Priors**: Introduce priors and how they are used to define the parameter space and guide the non-linear search.
@@ -1814,7 +1789,8 @@ f(x, y, z) = x + y^2 - z^3
 This defines a parameter space in three dimensions, representing the relationships between \(x\), \(y\), \(z\),
 and the output f(x, y, z).
 
-This concept of parameter space is closely related to how we approach model-fitting. For instance, in chapter 1, we created instances of a `Galaxy` object with
+This concept of parameter space is closely related to how we approach model-fitting. For instance, in the previous
+tutorials, we created instances of a `Galaxy` object with
 parameters like \(`centre_0`, `centre_1`, `ell_comps_0`, `ell_comps_1`, `intensity`, `effective_radius`, `sersic_index`\).
 These parameters were used to fit data and compute a log likelihood.
 
@@ -1822,9 +1798,9 @@ We can think of this process as analogous to the function:
 
 f(`centre_0`, `centre_1`, `ell_comps_0`, `ell_comps_1`, `intensity`, `effective_radius`, `sersic_index`),
 
-where the output is the log likelihood. This function, which maps parameter values to a log likelihood, is known
+where the output of this function, f, is the log likelihood. This function, which maps parameter values to a log likelihood, is known
 as the "likelihood function" in statistical inference. To be explicit, we’ll refer to it as the `log_likelihood_function`
-since it deals with the log of the likelihood function.
+since it returns the natural log of the likelihood function.
 
 By framing the likelihood this way, we can think of our model as having its own parameter space—a multidimensional
 surface defined by all possible values of the
@@ -1834,7 +1810,8 @@ values. During model-fitting, our goal is to find the peak of this surface, wher
 
 This parameter space is "non-linear," meaning the relationship between the model parameters and the log likelihood is
 not a simple linear one. Because of this non-linearity, we cannot predict the log likelihood from a given set of model
-parameters without actually performing a fit to the data, as we did in tutorial 1.
+parameters without actually performing a fit to the data, as we did above by manually inputting different parameter
+values and assessing the log likelihood.
 
 __Non-Linear Search__
 
@@ -1851,7 +1828,7 @@ log likelihoods. This iterative refinement helps to efficiently explore the vast
 There are two key differences between guessing random models and using a non-linear search:
 
 - **Computational Efficiency**: The non-linear search can evaluate the log likelihood of a model parameter
-  combinations in milliseconds and therefore many thousands of models in minutes. This computational speed enables
+  combination in milliseconds and therefore many thousands of models in minutes. This computational speed enables
   it to thoroughly sample potential solutions, which would be impractical for a human.
 
 - **Effective Sampling**: The search algorithm maintains a robust memory of previously guessed models and their log
@@ -1886,7 +1863,7 @@ in this tutorial. This means the model we are going to fit is identical to the o
 allowing us to assess the fitting process under controlled conditions.
 
 The dataset, as well as all subsequent datasets used in future tutorials, is stored in 
-the `autogalaxy_workspace/dataset/imaging` folder. 
+the `/dataset/imaging` folder. 
 """
 dataset_name = "simple__sersic"
 dataset_path = path.join("dataset", "imaging", dataset_name)
@@ -1924,18 +1901,18 @@ profile. Using a `Model` object tells **PyAutoGalaxy** that the parameters of th
 during the non-linear search.
 
 In this case, we'll model the galaxy with an elliptical Sersic light profile, which represents 
-its bulge component (the same profile used to simulate the galaxy). W
+its bulge component (the same profile used to simulate the galaxy).
 
 We again use the linear light profile variant via `ag.lp_linear`, which makes the modeling process more accurate
-and efficient by not having to fit for the `intensity` parameter of the light profile.
+and efficient by not having to fit for the `intensity` parameter of the light profile as a dimension in parameter space.
 """
 galaxy_model = af.Model(ag.Galaxy, redshift=0.5, bulge=ag.lp_linear.Sersic)
 
 """
 We now input the model component into a `Collection` object, which groups all the model components used to fit the data.
 
-As with profiles, we give galaxies descriptive names like `bulge`, or `disk`. Since this model has only one 
-galaxy, we'll simply refer to it as `galaxy` throughout the tutorials.
+As with profiles, we give galaxies descriptive names. Since this model has only one galaxy, we'll name it as `galaxy` 
+below.
 
 It may seem odd that we define two `Collections`, with the `Collection` in the outer loop only having a `galaxies`
 attribute. For certain tasks, we may have multiple galaxies in a model, and the code below would allow us to therefore
@@ -1951,7 +1928,7 @@ print(model.info)
 """
 __Priors__
 
-When we examine the `.info` of our model, we notice that each parameter (like `centre`, `effective_radius`, 
+When we examine the `model.info`, we notice that each parameter (like `centre`, `effective_radius`, 
 and `sersic_index` in our `Sersic` model) is associated with priors, such as `UniformPrior`. Priors define the 
 range of permissible values that each parameter can assume during the model fitting process, for example a uniform
 prior means that a parameter is equally likely to be any value within the given range, but cannot be outside of it.
