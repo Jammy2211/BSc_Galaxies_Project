@@ -136,7 +136,7 @@ observed at different wavelengths.
 
 **Task Instructions:**
 
-1. Navigate to the folder `dataset/task_2_colours`, where you will find the 
+1. Navigate to the folder `dataset/task_2a_colours` or `dataset/task_2b_colours`, depending on which you were assigned. You will find the 
 simulated datasets `F115W` and `F444W`.
 
 2. Use the light profile fitting tools to fit a Sersic light profile to each dataset.
@@ -154,12 +154,12 @@ As discussed earlier, the appearance of galaxies at different wavelengths can re
 Before we perform light profile fitting of the JWST images, this task therefore involves visually inspecting the
 JWST images of each galaxy and noting any morphological features that are visible at different wavelengths.
 
-In the folder `dataset/task_2_colours/jwst`, you will find 10 images of real galaxies observed with the James Webb
+In the folder `dataset/task_2a_colours/jwst` or `dataset/task_2b_colours`, you will find 10 images of real galaxies observed with the James Webb
 Space Telescope (JWST), all observed at the two wavelengths `F115W` and `F444W`. 
 
 You should therefore first familiarize yourself with common features observed in galaxies, in particular spiral
 arms, bars, bulges, disks and knots of star formation. Then, you should visually inspect the JWST images
-and makes notes of where you think you see these featurs in the data.
+and makes notes of whether you think you see these features in the data.
 
 These features are difficult to fit with light profiles using the tools you learned in the previous tutorial,
 therefore noting down their presence will be important for the next task.

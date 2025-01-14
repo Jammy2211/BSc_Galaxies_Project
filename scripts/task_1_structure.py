@@ -126,22 +126,22 @@ applying it to real James Webb Space Telescope images of galaxies in task 3.
 
 To classify galaxies as elliptical or disk galaxies, the following light profile fitting method is applied:
 
-- **Elliptical galaxies**: These typically exhibit a Sersic light profile with a `sersic_index` ranging from 2.5 to 4.0. Thus, if a Sersic profile fitted to a galaxy results in an inferred `sersic_index` above 2.5, the galaxy is likely elliptical.
+- **Elliptical galaxies**: These typically exhibit a Sersic light profile with a `sersic_index` ranging from 2.5 to 5.0. Thus, if a Sersic profile fitted to a galaxy results in an inferred `sersic_index` above 2.5, the galaxy is likely elliptical.
 
-- **Disk galaxies**: These generally have a Sersic light profile with a `sersic_index` of 1.0. Therefore, if a Sersic profile fitted to a galaxy yields an inferred `sersic_index` below 2.5, the galaxy is likely a disk galaxy.
+- **Disk galaxies**: These generally have a Sersic light profile with a `sersic_index` near 1.0. Therefore, if a Sersic profile fitted to a galaxy yields an inferred `sersic_index` below 2.5, the galaxy is likely a disk galaxy.
 
 **Task Instructions:**
 
-1. Navigate to the folder `dataset/task_1_structure`, where you will find two simulated galaxy datasets: `disk` and `elliptical`.
+1. Navigate to the folder `dataset/task_1a_structure` or `dataset/task_1b_structure`, depending on which you were assigned. You will find two simulated galaxy datasets: `disk` and `elliptical`.
 
 2. Use the light profile fitting tools to fit a Sersic light profile to each dataset.
 
 3. Verify that the fitting results align with the true `sersic_index` values:
 
-   - The galaxy dataset named `disk` has a true `sersic_index` of **1.0**.
-   - The galaxy dataset named `elliptical` has a true `sersic_index` of **4.0**.
+   - The galaxy dataset named `disk` infers a `sersic_index` value close to **1.0**.
+   - The galaxy dataset named `elliptical` infers a `sersic_index` value close to **4.0**.
 
-By successfully fitting the Sersic profile and recovering these values, you will confirm the accuracy of your light profile fitting tools.
+By successfully fitting the Sersic profile and recovering these values, you have therefore confirmed your light profile fitting code is working correctly.
 """
 # INSERT YOUR CODE HERE
 
@@ -150,22 +150,22 @@ __Task 2: Model Comparison__
 
 Certain Sersic profiles have specific names when their `sersic_index` takes particular values:
 
-- A Sersic profile with a **`sersic_index` of 4.0** is called a **De Vaucouleurs profile**. In **PyAutoGalaxy**, it can be fitted using the `ag.lp.DevVaucouleurs` class.
-- A Sersic profile with a **`sersic_index` of 1.0** is called an **Exponential profile**. In **PyAutoGalaxy**, it can be fitted using the `ag.lp.Exponential` class.
+- A Sersic profile with a `sersic_index` of 4.0 is called a **De Vaucouleurs profile**. In **PyAutoGalaxy**, it can be fitted using the `ag.lp.DevVaucouleurs` class.
+- A Sersic profile with a `sersic_index` of 1.0 is called an **Exponential profile**. In **PyAutoGalaxy**, it can be fitted using the `ag.lp.Exponential` class.
 
 These classes allow you to model the light profiles of galaxies with predefined Sersic indices, using the same Python code introduced in previous tutorials.
 
 By comparing the quality of fits using different profiles, we can identify the model that best matches the data, 
-helping to determine whether a galaxy is more likely to be elliptical or disk.
+helping to determine whether a galaxy is more likely to be an elliptical or a disk.
 
 **Task Instructions:**
 
 1. Fit the `De Vaucouleurs` profile (`ag.lp.DevVaucouleurs`) to the `elliptical` galaxy dataset and 
    the `Exponential` profile (`ag.lp.Exponential`) to the `disk` galaxy dataset, and confirm that the fits are 
-   successful.
+   accurate.
 
 2. Fit both the `De Vaucouleurs` and `Exponential` profiles to the other dataset (`elliptical` and `disk`) and verify
-   that the fits are worse, using the `log_likelihood` values.
+   that the fits are worse, produce visible residuals and have lower `log_likelihood` values.
 
 By completing this task, you will confirm that the `De Vaucouleurs` and `Exponential` profiles accurately capture the
 structure of elliptical and disk galaxies, respectively, using **PyAutoGalaxy**'s specialized light profile fitting tools.
@@ -175,8 +175,8 @@ structure of elliptical and disk galaxies, respectively, using **PyAutoGalaxy**'
 """
 __Task 3: Real Galaxies__
 
-In the folder `dataset/task_1_structure/jwst`, you will find 10 images of real galaxies observed with the James Webb
-Space Telescope (JWST). 
+In the folder `dataset/task_1a_structure/jwst` or `dataset/task_1b_structure/jwst`, you will find 10 images of real 
+galaxies observed with the James Webb Space Telescope (JWST). 
 
 For 3 galaxies of your choice, use the light profile fitting tools to classify each galaxy as either elliptical or 
 disk-shaped using light profile fitting tools. You can achieve this by applying either of the methods discussed 
@@ -184,7 +184,7 @@ earlier or by combining them for a more robust classification.
 
 Once you are content with the results, read below on task 4 on the report you will write. This report should include 
 JWST analysis results specific to the aspect of galaxy structure you choose to write about. Therefore you will
-need to tailor your JWST analysis to the specific subject matter you choose to write about and this analyse a
+need to tailor your JWST analysis to the specific subject matter you choose to write about and analyse a
 larger sample of galaxies than just the 3 you chose above.
 
 __Residuals__

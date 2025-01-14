@@ -142,11 +142,11 @@ As discussed earlier, galaxies undergoing a merger or after a merger can reveal 
 Before we perform light profile fitting of the JWST images, this task therefore involves visually inspecting the
 JWST images of the galaxies and noting any morphological features that are visible at different wavelengths.
 
-In the folder `dataset/task_3_mergers/jwst`, you will find 10 images of real merging galaxies observed with the James Webb
-Space Telescope (JWST).
+In the folder `dataset/task_3a_mergers/jwst` or `dataset/task_3b_mergers/jwst, depending on which you are assigned, 
+you will find 10 images of real merging galaxies observed with the James Webb Space Telescope (JWST).
 
 You should therefore first familiarize yourself with common features observed in merging galaxies, for example 
-tidal tails, streams, shells, and asymmetries in the light profile. Then, you should visually  inspect the JWST images 
+tidal tails, streams, shells, and asymmetries in the light profile. Then, you should visually inspect the JWST images 
 and makes notes of where you think you see these features in the data.
 
 These features are difficult to fit with light profiles using the tools you learned in the previous tutorial,

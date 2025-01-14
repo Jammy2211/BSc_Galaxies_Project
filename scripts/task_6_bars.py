@@ -139,12 +139,12 @@ for the bar and one for the remaining galaxy emission.
 
 **Task Instructions:**
 
-1. Navigate to the folder `dataset/task_6_bars`, where you will find the simulated datasets `bar_0` and `bar_1`. 
+1. Navigate to the folder `dataset/task_6a_bars` or `dataset/task_6b_bars`, depending on which you are assigned, where you will find the simulated datasets `bar_0` and `bar_1`. 
    Visually inspect the images, you should note there is a elongated central bar shaped emission, at 45 degree from 
    the x-axis over the top of the surrounding rounder emission. This is the bar.
 
 2. Use the light profile fitting tools to fit a model composed of two Sersic light profiles, where one Sersic light 
-   profile has its `sersic_index` fixed to a value of 0.5, to each dataset.
+   profile has its `sersic_index` forced to values near 0.5 by an update to its uniform prior, to each dataset.
 
 3. Verify that the `effective_radius` inferred for the fit to `bar_0` is 0.3 and that for `bar_1` is 0.8.
 """

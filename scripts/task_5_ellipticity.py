@@ -133,7 +133,7 @@ applying it to real James Webb Space Telescope images of galaxies in task 3.
 
 **Task Instructions:**
 
-1. Navigate to the folder `dataset/task_5_ellipticity`, where you will find two simulated datasets, `round` and `flat`.
+1. Navigate to the folder `dataset/task_5a_ellipticity` or `dataset/task_5b_ellipticity`, depending on which you were assigned, where you will find two simulated datasets, `round` and `flat`.
 
 2. Use the light profile fitting tools to fit a Sersic light profile to each dataset.
 
@@ -165,7 +165,7 @@ important for accurate galaxy shape classification and analysis.
 """
 __Task 3: Real Galaxies__
 
-In the folder `dataset/task_4_ellipticities/jwst`, you will find 10 images of real galaxies observed with the James Webb
+In the folder `dataset/task_5a_ellipticities/jwst` or `dataset/task_5b_ellipticities/jwst`, you will find 10 images of real galaxies observed with the James Webb
 Space Telescope (JWST). 
 
 For 3 galaxies of your choice, use the light profile fitting tools to measure the ellipticities of three galaxies in 

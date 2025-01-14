@@ -126,7 +126,7 @@ applying it to real James Webb Space Telescope images of galaxies in task 3.
 
 **Task Instructions:**
 
-1. Navigate to the folder `dataset/task_4_sizes`, where you will find two simulated datasets, `small` and `large`.
+1. Navigate to the folder `dataset/task_4a_sizes` or `dataset/task_4b_sizes`, depending on which you were assigned, where you will find two simulated datasets, `small` and `large`.
 
 2. Use the light profile fitting tools to fit a Sersic light profile to each dataset.
 
@@ -147,14 +147,14 @@ that 50% of the luminosity is contained within the `effective_radius` values you
 """
 __Task 3: Real Galaxies__
 
-In the folder `dataset/task_4_sizes/jwst`, you will find 10 images of real galaxies observed with the James Webb
-Space Telescope (JWST). 
+In the folder `dataset/task_4a_sizes/jwst` or `dataset/task_4b_sizes/jwst`, you will find 10 images of real galaxies 
+observed with the James Webb Space Telescope (JWST). 
 
 For 3 galaxies of your choice, use the light profile fitting tools to measure the sizes of three galaxies in the 
 dataset. 
 
 You should then make plots comparing the measured sizes on the x axis with other measured galaxy properties, 
-such as `intensity` and `sersic_index`. 
+such as `sersic_index`. 
 
 Once you are content with the results, read below on task 4 on the report you will write. This report should include 
 JWST analysis results specific to the aspect of galaxy sizes you choose to write about. Therefore you will
