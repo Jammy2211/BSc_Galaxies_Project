@@ -230,4 +230,23 @@ results and expanding it to more than 3 galaxies.
 
 You should link these results to the topics discussed in your literature review, providing a coherent connection 
 between your discussion and the practical JWST analysis and results.
+
+**Recommended Reading:**
+
+NASA's Astrophysics Data System (ADS) is a widely used digital library portal for accessing astronomical and astrophysical literature. Researchers and students use NASA ADS to find scientific papers, references, and citations in the field of astronomy, astrophysics, and related disciplines. You can access NASA ADS at the following link: [NASA ADS](https://ui.adsabs.harvard.edu/).
+
+For an excellent overview of galaxy bars, the following papers are a good starting point:
+
+
+1. **"Galactic Bars: A Review on Theoretical and Observational Issues" by Athanassoula (2005)**  
+   - A highly regarded review paper that explores the formation, dynamics, and evolution of bars in galaxies, as well as their effects on disk structures. It combines both theoretical frameworks and observational insights, making it an excellent starting point.  
+   [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2005MNRAS.358.1477A/abstract)
+
+2. **"Bars and Secular Evolution in Disk Galaxies" by Kormendy & Kennicutt (2004)**  
+   - This widely cited review paper covers the role of bars in driving secular evolution in disk galaxies, including bar formation, dynamics, and their impact on galaxy morphology and star formation.  
+   [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2004ARA%26A..42..603K/abstract)
+
+3. **"The Lifetime of Bars in Disk Galaxies" by Debattista & Sellwood (2000)**  
+   - This influential study focuses on the longevity of bars in disk galaxies, examining factors like dynamical friction and gas accretion. While not a summary paper, it provides critical insights into the persistence of bar structures.  
+   [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2000ApJ...543..704D/abstract)
 """

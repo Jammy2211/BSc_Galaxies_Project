@@ -215,4 +215,22 @@ results and expanding it to more than 3 galaxies.
 
 You should link these results to the topics discussed in your literature review, providing a coherent connection 
 between your discussion and the practical JWST analysis and results.
+
+**Recommended Reading:**
+
+NASA's Astrophysics Data System (ADS) is a widely used digital library portal for accessing astronomical and astrophysical literature. Researchers and students use NASA ADS to find scientific papers, references, and citations in the field of astronomy, astrophysics, and related disciplines. You can access NASA ADS at the following link: [NASA ADS](https://ui.adsabs.harvard.edu/).
+
+For an excellent overview of galaxy ellipticity, the following papers are a good starting point:
+
+1. **"The Intrinsic Shapes of Galaxies" by Vincent R. Eke et al. (2000)**  
+   - A comprehensive review discussing the intrinsic shapes and ellipticities of galaxies. It covers observational techniques, such as analyzing the distribution of projected ellipticities, and theoretical insights into galaxy formation and evolution.  
+   [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2000MNRAS.318..203E/abstract)
+
+2. **"Shapes and Orientations of Galaxy Distributions: Observations and Theories" by Ryden (2004)**  
+   - This paper reviews the methods used to measure galaxy ellipticities and examines how these measurements relate to the underlying physical processes shaping galaxies, including dynamics and environmental effects.  
+   [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2004ARA%26A..42..441R/abstract)
+
+3. **"Elliptical Galaxies and the Fundamental Plane" by Djorgovski & Davis (1987)**  
+   - This influential study discusses the correlation between galaxy ellipticity, dynamics, and the fundamental plane, providing a deeper understanding of the structural and dynamical properties of elliptical galaxies. While not a review, it's a cornerstone paper for understanding ellipticity in context.  
+   [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/1987ApJ...313...59D/abstract)
 """

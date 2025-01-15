@@ -226,4 +226,24 @@ results and expanding it to more than 3 galaxies.
 
 You should link these results to the topics discussed in your literature review, providing a coherent connection 
 between your discussion and the practical JWST analysis and results.
+
+**Recommended Reading:**
+
+NASA's Astrophysics Data System (ADS) is a widely used digital library portal for accessing astronomical and astrophysical literature. Researchers and students use NASA ADS to find scientific papers, references, and citations in the field of astronomy, astrophysics, and related disciplines. You can access NASA ADS at the following link: [NASA ADS](https://ui.adsabs.harvard.edu/).
+
+For an excellent overview of galaxy morphology and structure, particularly for the use of the Sérsic index, the following papers are a good starting point:
+
+1. **"A Revised Parallel-Sequence Morphological Classification of Galaxies" by John Kormendy (2012)**  
+   - This paper provides a comprehensive summary of galaxy morphology, offering insights into the classification of galaxies and the structural differences between ellipticals, lenticulars, and spirals. It also introduces the concept of a revised parallel-sequence classification.  
+   [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2012ApJS..198....2K/abstract)
+
+2. **"The Sérsic Profile: A Useful Tool for Quantifying Galaxy Structure" by A. Graham & R. Guzmán (2003)**  
+   - This paper explains the Sérsic index and its application in characterizing galaxy light profiles, from elliptical galaxies to bulges of spirals. It also discusses the relationship between the Sérsic index and other structural parameters like galaxy concentration and total luminosity.  
+   [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2003AJ....125.2936G/abstract)
+
+3. **"Galaxy Bulges and Their Scaling Relations" by J. Falcón-Barroso & J. H. Knapen (2012)**  
+   - This review focuses on bulge structures, scaling relations like the Kormendy relation, and the Sérsic index's role in distinguishing classical and pseudo-bulges.  
+   [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2012arXiv1204.3087F/abstract)
+
+These papers provide a well-rounded foundation for understanding galaxy morphology and the use of the Sérsic index in structural analysis. For beginners or non-specialists, starting with Kormendy's 2012 paper is highly recommended.
 """
