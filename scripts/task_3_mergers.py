@@ -213,13 +213,13 @@ NASA's Astrophysics Data System (ADS) is a widely used digital library portal fo
 
 For an excellent overview of galaxy mergers, the following papers are a good starting point:
 
-1. **Galaxy merger morphologies and time-scales from simulations of equal-mass gas-rich disc mergers" by Lotz et al. (2008)**  
-   - A comprehensive study on the observable signatures of galaxy interactions, focusing on how mergers affect star formation and structure. This paper emphasizes the use of morphological indicators like Gini-M20 to identify mergers at various redshifts.  
-   [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2008MNRAS.391.1137L/abstract)
-
-2. **"Galaxy Mergers and Interactions at High Redshift by C. Conselice (2007)**  
+1. **"Galaxy Mergers and Interactions at High Redshift by C. Conselice (2007)**  
    - This paper discusses the evidence for galaxy interactions and mergers in the distant universe and their role in galaxy formation. 
    [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2007IAUS..235..381C/abstract)
+
+2. **Galaxy merger morphologies and time-scales from simulations of equal-mass gas-rich disc mergers" by Lotz et al. (2008)**  
+   - A comprehensive study on the observable signatures of galaxy interactions, focusing on how mergers affect star formation and structure. This paper emphasizes the use of morphological indicators like Gini-M20 to identify mergers at various redshifts.  
+   [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2008MNRAS.391.1137L/abstract)
 
 3. **Dynamics of interacting galaxies. by Barnes & Hernquist (1992)**  
    - This paper explores the formation of elliptical galaxies through mergers of disk galaxies using numerical simulations, establishing the idea that major mergers can transform galaxy morphology.  

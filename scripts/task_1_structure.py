@@ -239,7 +239,7 @@ For an excellent overview of galaxy morphology and structure, particularly for t
 
 2. **"On the estimation of galaxy structural parameters: the Sérsic model" by I. Trujillo & A. Graham (2001)**  
    - This paper explains the Sérsic index and its application in characterizing galaxy light profiles, from elliptical galaxies to bulges of spirals. It also discusses the relationship between the Sérsic index and other structural parameters like galaxy concentration and total luminosity.  
-   [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2003AJ....125.2936G/abstract)
+   [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2001MNRAS.326..869T/abstract)
 
 3. **"Elliptical and Disk Galaxy Structure and Modern Scaling Laws" by A. Graham (2013)**  
    - This paper discusses the Sérsic model's role in describing the light profiles of galaxies and examines how the Sérsic index correlates with various structural parameters, providing insights into galaxy morphology and scaling relations. 

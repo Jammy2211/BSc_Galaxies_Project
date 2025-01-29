@@ -245,7 +245,7 @@ For an excellent overview of galaxy bars, the following papers are a good starti
    - This widely cited review paper covers the role of bars in driving secular evolution in disk galaxies, including bar formation, dynamics, and their impact on galaxy morphology and star formation.  
    [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2013seg..book..305A/abstract)
 
-3. **" The Galactic Bar" (2004) by Michael R. Merrifield  
+3. **"The Galactic Bar"** (2004) by Michael R. Merrifield  
    - This paper reviews the evidence for a bar that can be gleaned from the many extensive surveys of both gas and stars in the Milky Way.
    [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2004ASPC..317..289M/abstract)
 """

@@ -228,7 +228,7 @@ For an excellent overview of galaxy ellipticity, the following papers are a good
 
 2. **"Intrinsic Shapes of Elliptical Galaxies" by Merritt 1992**  
    -  This paper discusses tests for the intrinsic shape of the luminosity distribution in elliptical galaxies.
-   [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/1992ASSL..178..309M/abstractt)
+   [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/1992ASSL..178..309M/abstract)
 
 3. **"Fundamental Properties of Elliptical Galaxiese" by Djorgovski & Davis (1987)**  
    - This influential study discusses the correlation between galaxy ellipticity, dynamics, and the fundamental plane, providing a deeper understanding of the structural and dynamical properties of elliptical galaxies. While not a review, it's a cornerstone paper for understanding ellipticity in context.  

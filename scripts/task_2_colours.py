@@ -229,7 +229,7 @@ For an excellent overview of galaxy colours, the following papers are a good sta
 
 1. **"The bimodal galaxy color distribution: Dependence on luminosity and environment" by Blanton et al. (2004)**  
    - This paper investigates the bimodal distribution of galaxy colors (red and blue sequences) and how they depend on factors like luminosity and environment. It provides insights into the connection between galaxy colors, star formation histories, and galaxy evolution.  
-   [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2004ApJ...615L.101B/abstractt)
+   [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2004ApJ...615L.101B/abstract)
 
 
 2. **"Quantifying the Bimodal Color-Magnitude Distribution of Galaxies" by Baldry et al. (2004)**  

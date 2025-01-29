@@ -204,15 +204,15 @@ For an excellent overview of galaxy sizes, the following papers are a good start
 
 You're right, the earlier papers are more focused studies. Here are two **summary or review papers** that provide a broader perspective on galaxy sizes:
 
-1. **"A review of elliptical and disc galaxy structure" by Graham (2013)**  
+1. **"Elliptical and Disk Galaxy Structure and Modern Scaling Laws" by Graham (2013)**  
    - This comprehensive review delves into the structural properties of galaxies, including size, surface brightness profiles, and their evolution over time. It discusses the Sérsic index and its role in understanding galaxy morphology and size evolution.  
    [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2013pss6.book...91G/abstract)
 
-2. **"A historical perspective on the concept of galaxy size" by Chamba (2012)**  
-   - This paper provides an insightful narrative on how parameters like effective radius and isophotal diameters became standard measures of galaxy size. 
-   [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2010ARA%26A..48..127M/abstract)
-
-3. **"Strong size evolution of the most massive galaxies since z ∼ 2" by Trujillo et al. (2007)**  
+2. **"Strong size evolution of the most massive galaxies since z ∼ 2" by Trujillo et al. (2007)**  
    - This paper examines the evolution of galaxy sizes over cosmic time, highlighting how massive galaxies at high redshifts are more compact than their present-day counterparts.  
    [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2007MNRAS.382..109T/abstract)
+
+3. **"A historical perspective on the concept of galaxy size" by Chamba (2012)**  
+   - This paper provides an insightful narrative on how parameters like effective radius and isophotal diameters became standard measures of galaxy size. 
+   [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2020RNAAS...4..117C/abstract)
 """
