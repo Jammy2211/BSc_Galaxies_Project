@@ -237,16 +237,15 @@ NASA's Astrophysics Data System (ADS) is a widely used digital library portal fo
 
 For an excellent overview of galaxy bars, the following papers are a good starting point:
 
+1. **Barred Galaxies: an Observer's Perspective" (2008) by D. Gadotti" (2008)**  
+   - A highly regarded review paper that explores obseervational aspects of barred galaxies, including their morphology, dynamics, and the role of bars in galaxy evolution.
+   [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2009ASSP....8..159G/abstract)
 
-1. **"Galactic Bars: A Review on Theoretical and Observational Issues" by Athanassoula (2005)**  
-   - A highly regarded review paper that explores the formation, dynamics, and evolution of bars in galaxies, as well as their effects on disk structures. It combines both theoretical frameworks and observational insights, making it an excellent starting point.  
-   [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2005MNRAS.358.1477A/abstract)
-
-2. **"Bars and Secular Evolution in Disk Galaxies" by Kormendy & Kennicutt (2004)**  
+2. **"Bars and secular evolution in disk galaxies: Theoretical input (2013)**  
    - This widely cited review paper covers the role of bars in driving secular evolution in disk galaxies, including bar formation, dynamics, and their impact on galaxy morphology and star formation.  
-   [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2004ARA%26A..42..603K/abstract)
+   [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2013seg..book..305A/abstract)
 
-3. **"The Lifetime of Bars in Disk Galaxies" by Debattista & Sellwood (2000)**  
-   - This influential study focuses on the longevity of bars in disk galaxies, examining factors like dynamical friction and gas accretion. While not a summary paper, it provides critical insights into the persistence of bar structures.  
-   [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2000ApJ...543..704D/abstract)
+3. **" The Galactic Bar" (2004) by Michael R. Merrifield  
+   - This paper reviews the evidence for a bar that can be gleaned from the many extensive surveys of both gas and stars in the Milky Way.
+   [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2004ASPC..317..289M/abstract)
 """

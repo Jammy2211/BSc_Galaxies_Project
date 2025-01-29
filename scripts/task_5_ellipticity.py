@@ -222,15 +222,15 @@ NASA's Astrophysics Data System (ADS) is a widely used digital library portal fo
 
 For an excellent overview of galaxy ellipticity, the following papers are a good starting point:
 
-1. **"The Intrinsic Shapes of Galaxies" by Vincent R. Eke et al. (2000)**  
-   - A comprehensive review discussing the intrinsic shapes and ellipticities of galaxies. It covers observational techniques, such as analyzing the distribution of projected ellipticities, and theoretical insights into galaxy formation and evolution.  
-   [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2000MNRAS.318..203E/abstract)
+1. **"The intrinsic shape of galaxies in SDSS/Galaxy Zoo" by S. Rodríguez (2013)**  
+   - A comprehensive analysis of the intrinsic shapes of galaxies.
+   [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2013MNRAS.434.2153R/abstract)
 
-2. **"Shapes and Orientations of Galaxy Distributions: Observations and Theories" by Ryden (2004)**  
-   - This paper reviews the methods used to measure galaxy ellipticities and examines how these measurements relate to the underlying physical processes shaping galaxies, including dynamics and environmental effects.  
-   [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2004ARA%26A..42..441R/abstract)
+2. **"Intrinsic Shapes of Elliptical Galaxies" by Merritt 1992**  
+   -  This paper discusses tests for the intrinsic shape of the luminosity distribution in elliptical galaxies.
+   [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/1992ASSL..178..309M/abstractt)
 
-3. **"Elliptical Galaxies and the Fundamental Plane" by Djorgovski & Davis (1987)**  
+3. **"Fundamental Properties of Elliptical Galaxiese" by Djorgovski & Davis (1987)**  
    - This influential study discusses the correlation between galaxy ellipticity, dynamics, and the fundamental plane, providing a deeper understanding of the structural and dynamical properties of elliptical galaxies. While not a review, it's a cornerstone paper for understanding ellipticity in context.  
    [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/1987ApJ...313...59D/abstract)
 """

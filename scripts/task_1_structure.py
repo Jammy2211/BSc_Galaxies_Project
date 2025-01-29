@@ -237,13 +237,13 @@ For an excellent overview of galaxy morphology and structure, particularly for t
    - This paper provides a comprehensive summary of galaxy morphology, offering insights into the classification of galaxies and the structural differences between ellipticals, lenticulars, and spirals. It also introduces the concept of a revised parallel-sequence classification.  
    [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2012ApJS..198....2K/abstract)
 
-2. **"The Sérsic Profile: A Useful Tool for Quantifying Galaxy Structure" by A. Graham & R. Guzmán (2003)**  
+2. **"On the estimation of galaxy structural parameters: the Sérsic model" by I. Trujillo & A. Graham (2001)**  
    - This paper explains the Sérsic index and its application in characterizing galaxy light profiles, from elliptical galaxies to bulges of spirals. It also discusses the relationship between the Sérsic index and other structural parameters like galaxy concentration and total luminosity.  
    [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2003AJ....125.2936G/abstract)
 
-3. **"Galaxy Bulges and Their Scaling Relations" by J. Falcón-Barroso & J. H. Knapen (2012)**  
-   - This review focuses on bulge structures, scaling relations like the Kormendy relation, and the Sérsic index's role in distinguishing classical and pseudo-bulges.  
-   [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2012arXiv1204.3087F/abstract)
+3. **"Elliptical and Disk Galaxy Structure and Modern Scaling Laws" by A. Graham (2013)**  
+   - This paper discusses the Sérsic model's role in describing the light profiles of galaxies and examines how the Sérsic index correlates with various structural parameters, providing insights into galaxy morphology and scaling relations. 
+   [Link to paper on ADS](https://ui.adsabs.harvard.edu/abs/2013pss6.book...91G/abstract)
 
 These papers provide a well-rounded foundation for understanding galaxy morphology and the use of the Sérsic index in structural analysis. For beginners or non-specialists, starting with Kormendy's 2012 paper is highly recommended.
 """
