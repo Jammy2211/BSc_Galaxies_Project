@@ -21,21 +21,8 @@ Project Setup: Software Installation
 Next, install the Python software libraries required for this research project. In Google Colab, this can be done
 easily by running the cell below in the Jupyter Notebook.
 
-You will be prompted to restart the session, with a message that states:
-
-```
-Restart session
-WARNING: The following packages were previously imported in this runtime:
-  [psutil]
-You must restart the runtime in order to use newly installed versions.
-
-Restarting will lose all runtime state, including local variables.
-```
-
-When this pop-up appears, click "Restart session", let the Google colab webpage reload and rerun the cell and
-continue with the notebook.
 """
-!pip install autogalaxy==2024.11.13.2
+!pip install autoconf==2024.11.13.2 autofit==2024.11.13.2 autoarray==2024.11.13.2 autogalaxy==2024.11.13.2 pyvis==0.3.2 dill==0.3.1.1 dynesty==2.1.4 emcee==3.1.6 nautilus-sampler==1.0.4 timeout_decorator==0.5.0 anesthetic==2.8.14 --no-deps
 !pip install numba
 
 """
@@ -2102,6 +2089,40 @@ We plot this object to inspect how good our fit was, showing an excellent fit to
 """
 fit_plotter = aplt.FitImagingPlotter(fit=result.max_log_likelihood_fit)
 fit_plotter.subplot_fit()
+
+"""
+__Permanently Saving Results__
+
+A Google Colab is a temporary server that is erased after 90 minutes, meaning your output folder will be
+erased and you will lose the results of any model-fitting you performed.
+
+There are two ways to permanently save the results of a model-fit, and you can use either or both of them.
+
+**Save to Google Drive**: If you have a Google Drive, you can save the results to it. This is handled by the
+code below, which every time you run it will save the results in the `output` folder of your Google Drive
+in a folder named `BSc_Galaxies_Project`.
+
+If you navigate to this folder in your Google Drive you will find the results of all model-fits you have
+performed. As new runs are performed and results are saved, they will be added to this folder ever time you
+run the code below.
+"""
+from google.colab import drive
+drive.mount("/content/drive")
+
+!cp -r /content/BSc_Galaxies_Project/output /content/drive/MyDrive/BSc_Galaxies_Project
+
+"""
+**Download to Hard-disc**: You can download the `output` folder to your PC or laptop by running the code below. 
+
+You have to .zip the output folder first in order to download it, and you may therefore need to also unzip it
+locally once downloaded. 
+
+As you perform more runs, this .zip file will include them, ensuring all results of model fitting are retained.
+"""
+from google.colab import files
+
+!zip -r output.zip /content/BSc_Galaxies_Project/output
+files.download("output.zip")
 
 """
 __Wrap Up__
