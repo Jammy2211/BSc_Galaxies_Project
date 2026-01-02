@@ -38,7 +38,7 @@ The workspace includes the following additional directories:
 Workspace Version
 -----------------
 
-This version of the workspace is built and tested for using **PyAutoGalaxy v2024.11.13.2**.
+This version of the workspace is built and tested for using **PyAutoGalaxy v2025.12.21.1**.
 
 Local Installation (pip)
 ------------------------
@@ -62,7 +62,7 @@ the installation has clean dependencies):
 
 .. code-block:: bash
 
-    pip install autogalaxy==2024.11.13.2
+    pip install autogalaxy==2025.12.21.1
 
 **PyAutoGalaxy** should now be installed and you should be able to successfully run the ``tutorial.ipynb`` Jupyter notebook.
 
@@ -108,6 +108,6 @@ caching issues impacting the installation):
 
 .. code-block:: bash
 
-    pip install autogalaxy==2024.11.13.2 --no-cache-dir
+    pip install autogalaxy==2025.12.21.1 --no-cache-dir
 
 **PyAutoGalaxy** should now be installed and you should be able to successfully run the ``tutorial.ipynb`` Jupyter notebook.
