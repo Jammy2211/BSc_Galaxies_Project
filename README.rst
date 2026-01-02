@@ -63,7 +63,6 @@ the installation has clean dependencies):
 .. code-block:: bash
 
     pip install autogalaxy==2024.11.13.2
-    pip install numba
 
 **PyAutoGalaxy** should now be installed and you should be able to successfully run the ``tutorial.ipynb`` Jupyter notebook.
 
@@ -110,6 +109,5 @@ caching issues impacting the installation):
 .. code-block:: bash
 
     pip install autogalaxy==2024.11.13.2 --no-cache-dir
-    pip install numba
 
 **PyAutoGalaxy** should now be installed and you should be able to successfully run the ``tutorial.ipynb`` Jupyter notebook.

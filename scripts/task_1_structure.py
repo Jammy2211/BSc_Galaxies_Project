@@ -31,7 +31,6 @@ Next, install the Python software libraries required for this research project. 
 easily by running the cell below in the Jupyter Notebook.
 """
 !pip install autoconf==2024.11.13.2 autofit==2024.11.13.2 autoarray==2024.11.13.2 autogalaxy==2024.11.13.2 pyvis==0.3.2 dill==0.3.1.1 dynesty==2.1.4 emcee==3.1.6 nautilus-sampler==1.0.4 timeout_decorator==0.5.0 anesthetic==2.8.14 --no-deps
-!pip install numba
 
 """
 Project Setup: Repository Clone

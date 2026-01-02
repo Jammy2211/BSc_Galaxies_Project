@@ -1,24 +1,24 @@
 Exponential:
   centre_0:
-    type: Uniform
-    lower_limit: -0.3
-    upper_limit: 0.3
+    type: Gaussian
+    mean: 0.0
+    sigma: 0.3
     width_modifier:
       type: Absolute
-      value: 1.5
-    gaussian_limits:
-      lower: inf
-      upper: -inf
+      value: 0.05
+    limits:
+      lower: -inf
+      upper: inf
   centre_1:
-    type: Uniform
-    lower_limit: -0.3
-    upper_limit: 0.3
+    type: Gaussian
+    mean: 0.0
+    sigma: 0.3
     width_modifier:
       type: Absolute
-      value: 1.5
-    gaussian_limits:
-      lower: inf
-      upper: -inf
+      value: 0.05
+    limits:
+      lower: -inf
+      upper: inf
   effective_radius:
     type: Uniform
     lower_limit: 0.0
@@ -26,50 +26,54 @@ Exponential:
     width_modifier:
       type: Relative
       value: 1.0
-    gaussian_limits:
+    limits:
       lower: 0.0
       upper: inf
   ell_comps_0:
-    type: Uniform
+    type: TruncatedGaussian
+    mean: 0.0
+    sigma: 0.3
     lower_limit: -1.0
     upper_limit: 1.0
     width_modifier:
       type: Absolute
-      value: 1.5
-    gaussian_limits:
+      value: 0.2
+    limits:
       lower: -1.0
       upper: 1.0
   ell_comps_1:
-    type: Uniform
+    type: TruncatedGaussian
+    mean: 0.0
+    sigma: 0.3
     lower_limit: -1.0
     upper_limit: 1.0
     width_modifier:
       type: Absolute
-      value: 1.5
-    gaussian_limits:
+      value: 0.2
+    limits:
       lower: -1.0
       upper: 1.0
 ExponentialSph:
   centre_0:
-    type: Uniform
-    lower_limit: -0.3
-    upper_limit: 0.3
+    type: Gaussian
+    mean: 0.0
+    sigma: 0.3
     width_modifier:
       type: Absolute
-      value: 1.5
-    gaussian_limits:
-      lower: inf
-      upper: -inf
+      value: 0.05
+    limits:
+      lower: -inf
+      upper: inf
   centre_1:
-    type: Uniform
-    lower_limit: -0.3
-    upper_limit: 0.3
+    type: Gaussian
+    mean: 0.0
+    sigma: 0.3
     width_modifier:
       type: Absolute
-      value: 1.5
-    gaussian_limits:
-      lower: inf
-      upper: -inf
+      value: 0.05
+    limits:
+      lower: -inf
+      upper: inf
   effective_radius:
     type: Uniform
     lower_limit: 0.0
@@ -77,6 +81,6 @@ ExponentialSph:
     width_modifier:
       type: Relative
       value: 1.0
-    gaussian_limits:
+    limits:
       lower: 0.0
       upper: inf

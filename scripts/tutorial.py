@@ -20,10 +20,8 @@ Project Setup: Software Installation
 
 Next, install the Python software libraries required for this research project. In Google Colab, this can be done
 easily by running the cell below in the Jupyter Notebook.
-
 """
 !pip install autoconf==2024.11.13.2 autofit==2024.11.13.2 autoarray==2024.11.13.2 autogalaxy==2024.11.13.2 pyvis==0.3.2 dill==0.3.1.1 dynesty==2.1.4 emcee==3.1.6 nautilus-sampler==1.0.4 timeout_decorator==0.5.0 anesthetic==2.8.14 --no-deps
-!pip install numba
 
 """
 Project Setup: Repository Clone
@@ -60,8 +58,8 @@ from autoconf import conf
 os.chdir("/content/BSc_Galaxies_Project")
 
 conf.instance.push(
-    new_path="/content/BSc_Galaxies_Project/config",
-    output_path="/content/BSc_Galaxies_Project/output",
+   new_path="/content/BSc_Galaxies_Project/config",
+   output_path="/content/BSc_Galaxies_Project/output",
 )
 
 """
@@ -106,6 +104,7 @@ Here is an overview of what we'll cover in this tutorial:
 The imports below are required to run the tutorials in a Jupyter notebook. They also import the
 `autogalaxy` package and the `autogalaxy.plot` module which are used throughout the tutorials.
 """
+import matplotlib.pyplot as plt
 import numpy as np
 
 import autogalaxy as ag
@@ -397,21 +396,57 @@ light_profile_plotter.set_title("Image via LightProfilePlotter")
 light_profile_plotter.figures_2d(image=True)
 
 """
-The `LightProfilePlotter` also has methods to plot the 1D radial profile of the light profile. This profile shows
-how the intensity of the light changes as a function of distance from the profile's center. This can be a more informative
-way to visualize the light profile's distribution.
+__One Dimension Projection__
 
-The 1D plot below is a `semilogy` plot, meaning that the x-axis (showing the radial distance in arc-seconds) is linear,
-while the y-axis (showing the intensity) is log10. This is a common way to visualize light profiles, as it highlights
-the fainter outer regions of the profile. A log x-axis is also a common choice.
+We often want to calculative 1D quantities of a light profile, for example to plot how its light changes as
+a function of radius.
 
-*Exercise: Try plotting the 1D radial profile of Sersic profiles with different effective radii and Sersic indices. Does the 1D representation show more clearly how the light distribution changes with these parameters?*
+To do this, we must still input a 2D grid into the `image_2d_from` method, therefore we create a project 2D 
+radial grid as follows which has shape [Number_of_1d_coordinates, 2] and where all [:,0] entries are the same.
+
+A simple example of such a grid is as follows with 4 1D coordinates is:
 """
-light_profile_plotter = aplt.LightProfilePlotter(
-    light_profile=sersic_light_profile, grid=grid
+grid_2d_projected = ag.Grid2DIrregular(
+    [
+        [1.000000e-06, 1.000000e-06],
+        [1.000000e-06, 1.000001e00],
+        [1.000000e-06, 2.000001e00],
+        [1.000000e-06, 3.000001e00],
+    ]
 )
-light_profile_plotter.set_title("Sersic 1D Radial Profile")
-light_profile_plotter.figures_1d(image=True)
+
+"""
+As in this example, we often already have a 2D grid we are using to calculate images of a light profile
+and it would be convenient to simply create `grid_2d_projected` from that.
+
+For example, we may want the project grid which traces it major axis in uniform radial steps.
+
+This is easily computed using the `grid_2d_radial_project_from` function and passing the `centre` and `angle`
+of a light profile we can make it align with the light profile itself.
+
+Note how in this example the two galaxy bulges are not rotationally aligned but we aligned the projected
+grid with the first galaxy. The centres are aligned, but if they were not that would cause similar
+issues.
+"""
+grid_2d_projected = grid.grid_2d_radial_projected_from(
+    centre=sersic_light_profile.centre, angle=sersic_light_profile.angle()
+)
+
+image_1d = sersic_light_profile.image_2d_from(grid=grid_2d_projected)
+
+"""
+We can now plot the 1D radial profile of the light profile. This profile shows how the intensity of the light 
+changes as a function of distance from the profile's center. This is a more informative way to visualize the light 
+profile's distribution. We plot this using the standard matplotlib functionality.
+
+**Exercise**: Try plotting the 1D radial profile of Sersic profiles with different effective radii and Sersic indices.
+Does the 1D representation show more clearly how the light distribution changes with these parameters?
+"""
+plt.plot(grid_2d_projected[:, 1], image_1d)
+plt.xlabel("Radius (arcseconds)")
+plt.ylabel("Luminosity")
+plt.show()
+plt.close()
 
 """
 Since galaxy light distributions often cover a wide range of values, they are typically better visualized on a log10 
@@ -516,13 +551,35 @@ galaxy_plotter.set_title("Galaxy Bulge+Disk Image")
 galaxy_plotter.figures_2d(image=True)
 
 """
-The `figures_1d_decomposed` method allows us to visualize each light profile's contribution in 1D.
+Using the tools above, we can visualize each light profile's contribution in 1D.
 
 1D plots show the intensity of the light profile as a function of distance from the profile’s center. The bulge
-and disk profiles share the same `centre`, meaning that plotting them together shows how they overlap.
+and disk profiles in this example share the same `centre`, meaning that plotting them together on the same 1D plot 
+shows how they vary relative to one another. 
+
+If the `centre` of the profiles were different, when you make the 1D plot you would need to decide if you should the
+profiles offset from one another or plot them both from zero.
+
+**Exercise:** The disk is much fainter than the bulge in this example. Try changing the plot to have a log 10
+scale on the y-axis to better visualize both profiles.
 """
-galaxy_plotter.set_title("Bulge+Disk 1D Decomposed")
-galaxy_plotter.figures_1d_decomposed(image=True)
+grid_2d_projected = grid.grid_2d_radial_projected_from(
+    centre=galaxy.bulge.centre, angle=galaxy.bulge.angle()
+)
+bulge_image_1d = galaxy.bulge.image_2d_from(grid=grid_2d_projected)
+
+grid_2d_projected = grid.grid_2d_radial_projected_from(
+    centre=galaxy.disk.centre, angle=galaxy.disk.angle()
+)
+disk_image_1d = galaxy.disk.image_2d_from(grid=grid_2d_projected)
+
+plt.plot(grid_2d_projected[:, 1], bulge_image_1d, label="Bulge")
+plt.plot(grid_2d_projected[:, 1], disk_image_1d, label="Disk")
+plt.xlabel("Radius (arcseconds)")
+plt.ylabel("Luminosity")
+plt.legend()
+plt.show()
+plt.close()
 
 """
 We can group multiple galaxies at the same redshift into a `Galaxies` object, which is created from a list of 
@@ -755,8 +812,9 @@ image = galaxies.image_2d_from(grid=grid)  # The original unblurred image of the
 padded_image = galaxies.padded_image_2d_from(
     grid=grid, psf_shape_2d=psf.shape_native  # Adding padding based on the PSF size.
 )
-convolved_image = psf.convolved_array_from(
-    array=padded_image
+convolved_image = psf.convolved_image_from(
+    image=padded_image,
+    blurring_image=None # Don't worry about blurring image, ignore warning when about it when you run this code..
 )  # Applying the PSF convolution.
 blurred_image = convolved_image.trimmed_after_convolution_from(
     kernel_shape=psf.shape_native
@@ -900,7 +958,7 @@ The `SimulatorImaging` object lets us create simulated imaging data while includ
 Poisson noise, and background sky all at once:
 """
 simulator = ag.SimulatorImaging(
-    exposure_time=300.0, psf=psf, background_sky_level=0.1, add_poisson_noise=True
+    exposure_time=300.0, psf=psf, background_sky_level=0.1, add_poisson_noise_to_data=True
 )
 
 dataset = simulator.via_galaxies_from(galaxies=galaxies, grid=grid)
